@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <p className="read-the-docs">Only reseted</p>
+      <a className="read-the-docs">Only reseted</a>
     </>
   );
 }
