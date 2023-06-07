@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <a className="read-the-docs">Only reseted</a>
+      <a className="read-the-docs">Absolute Path</a>
     </>
   );
 }
