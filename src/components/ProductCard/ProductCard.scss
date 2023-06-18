@@ -1,0 +1,10 @@
+@import 'src/styles/_utils.scss';
+
+.card {
+  // sil
+  height: 200px;
+  background-color: red;
+
+  width: 220px;
+  border: 1px solid $c-border;
+}
