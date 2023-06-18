@@ -8,8 +8,8 @@ type Props = {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <div className="card">
-      <div className="card__image">
+    <div className="product-card">
+      <div className="product-card__image">
         <ProductImage
           img={product.image}
           alt={product.title}
@@ -17,8 +17,10 @@ const ProductCard = ({ product }: Props) => {
           width="200px"
         />
       </div>
-      <p className="card__price">{product.price}</p>
-      <p className="card__details">{product.description}</p>
+      <div className="product-card__container">
+        <p className="product-card__price">{`$${product.price}`}</p>
+        <p className="product-card__details">{product.title}</p>
+      </div>
     </div>
   );
 };
