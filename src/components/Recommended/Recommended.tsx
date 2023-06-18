@@ -2,9 +2,10 @@ import { useQuery } from 'react-query';
 import { getProducts } from 'src/services/getProducts';
 import { IProduct } from 'src/types/product.type';
 import ProductCard from '../ProductCard/ProductCard';
+import './Recommended.scss';
 
 export default function Recommended() {
-  const { isLoading, isError, data, error } = useQuery({
+  const { isLoading, isError, data, error, refetch } = useQuery({
     queryKey: ['products'],
     queryFn: getProducts,
   });
@@ -16,9 +17,11 @@ export default function Recommended() {
   return (
     <>
       {data ? (
-        data?.map((product: IProduct) => {
-          return <ProductCard product={product} key={product.id} />;
-        })
+        <div className="recommended-container">
+          {data?.map((product: IProduct) => {
+            return <ProductCard product={product} key={product.id} />;
+          })}
+        </div>
       ) : (
         <div>"There is no data"</div>
       )}

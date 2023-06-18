@@ -1,10 +1,12 @@
 @import 'src/styles/_utils.scss';
 
 .card {
-  // sil
-  height: 200px;
-  background-color: red;
-
   width: 220px;
   border: 1px solid $c-border;
+  border-radius: 8px;
+
+  &__image {
+    display: block;
+    margin: 10px;
+  }
 }
