@@ -5,8 +5,10 @@
   @extend %minMaxWidth;
 
   @include mediaMaxWidth {
-    max-width: $tabletWidth - 400px;
+    max-width: $tabletWidth - 80px;
   }
+
+  padding: 8px 40px;
 
   display: flex;
   gap: 20px;

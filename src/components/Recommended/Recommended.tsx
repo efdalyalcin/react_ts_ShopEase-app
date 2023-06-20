@@ -15,7 +15,7 @@ export default function Recommended() {
 
   console.log(data);
   return (
-    <>
+    <section>
       {data ? (
         <div className="recommended-container">
           {data?.map((product: IProduct) => {
@@ -25,6 +25,6 @@ export default function Recommended() {
       ) : (
         <div>"There is no data"</div>
       )}
-    </>
+    </section>
   );
 }
