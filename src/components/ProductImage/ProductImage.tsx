@@ -14,6 +14,7 @@ const ProductImage = ({ img, alt, height, width }: Props) => {
       src={img}
       alt={alt}
       style={{ height: height, width: width }}
+      loading="lazy"
     ></img>
   );
 };
