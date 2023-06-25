@@ -1,10 +1,12 @@
+@import 'src/styles/_utils.scss';
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Roboto', 'Oxygen', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', 'Roboto', 'Maison Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
