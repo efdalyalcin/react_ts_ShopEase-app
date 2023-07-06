@@ -1,0 +1,17 @@
+@import 'src/styles/_utils.scss';
+
+.recommended-container {
+  @extend %center;
+  @extend %minMaxWidth;
+
+  @include mediaMaxWidth {
+    max-width: $tabletWidth - 80px;
+  }
+
+  padding: 8px 40px;
+
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
