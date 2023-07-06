@@ -23,4 +23,13 @@
     margin-top: 4px;
     color: $c-gray500;
   }
+
+  &__back {
+    padding: 8px 0;
+    overflow-y: scroll;
+  }
+
+  &__back &__price {
+    text-align: center;
+  }
 }
