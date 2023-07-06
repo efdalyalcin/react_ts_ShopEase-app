@@ -15,6 +15,8 @@ const ProductCard = ({ product }: Props) => {
   });
   const cardRef = useRef<HTMLDivElement>(null);
 
+  const flipCard = () => setIsFlipped(() => !isFliped);
+
   useEffect(() => {
     if (cardRef.current) {
       const { width, height } = cardRef.current.getBoundingClientRect();
@@ -23,14 +25,18 @@ const ProductCard = ({ product }: Props) => {
   }, []);
 
   console.log(dimensions);
+
   return (
-    <div
-      className="product-card"
-      onClick={() => setIsFlipped(true)}
-      ref={cardRef}
-    >
+    <div className="product-card" onClick={flipCard} ref={cardRef}>
       {isFliped ? (
-        <div>aadda</div>
+        <div
+          style={{
+            width: dimensions.frontWidth,
+            // height -2 is for the border of product-card since it is outside. Don't remove!!
+            height: dimensions.frontHeight - 2,
+          }}
+          onClick={flipCard}
+        ></div>
       ) : (
         <>
           <div className="product-card__image">
