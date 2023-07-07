@@ -2,6 +2,7 @@ import { IProduct } from 'src/types/product.type';
 import './ProductCard.scss';
 import ProductImage from '../ProductImage/ProductImage';
 import { useEffect, useRef, useState } from 'react';
+import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 type Props = {
   product: IProduct;
@@ -45,15 +46,11 @@ const ProductCard = ({ product }: Props) => {
         >
           <div className="product-card__container">
             <p className="product-card__price">{`$${product.price}`}</p>
-            <div>
-              <button onClick={decreaseAmount} type="button">
-                -
-              </button>
-              <input type="text" />
-              <button onClick={increaseAmount} type="button">
-                +
-              </button>
-            </div>
+            <AddToCartButton
+              amount={amount}
+              decreaseAmount={decreaseAmount}
+              increaseAmount={increaseAmount}
+            />
             <p className="product-card__details">{product.description}</p>
           </div>
         </div>
