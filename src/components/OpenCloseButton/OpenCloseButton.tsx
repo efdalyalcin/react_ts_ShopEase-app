@@ -13,15 +13,15 @@ const OpenCloseButton = ({ action, state }: Props) => {
       <div className="open-close open-close__container">
         <button type="button" className="open-close__button" onClick={action}>
           <div
-            className={cn('add-cross', {
-              'add-cross--vertical': !state,
-              'add-cross--diagonal': state,
+            className={cn('open-close__icon', {
+              'open-close__icon--vertical': !state,
+              'open-close__icon--diagonal': state,
             })}
           />
           <div
-            className={cn('add-cross', {
-              'add-cross--horizontal': !state,
-              'add-cross--diagonal-opposite': state,
+            className={cn('open-close__icon', {
+              'open-close__icon--horizontal': !state,
+              'open-close__icon--diagonal-opposite': state,
             })}
           />
         </button>
