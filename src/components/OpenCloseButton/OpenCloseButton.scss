@@ -19,12 +19,33 @@
     height: $buttonSize;
     border-radius: 50%;
 
-    background-color: $c-gray600;
+    position: relative;
+
+    background-color: $c-gray200;
 
     transition: background-color $transitionTime;
 
     &:hover {
-      background-color: $c-gray300;
+      background-color: $c-gray500;
     }
+  }
+}
+
+.add-cross {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  left: calc(($buttonSize - 16px) / 2);
+
+  background-color: $c-gray500;
+  transition: background-color $transitionTime;
+
+  &:hover {
+    background-color: $c-gray200;
+  }
+
+  &--horizontal {
+    transform: rotate(90deg);
   }
 }
