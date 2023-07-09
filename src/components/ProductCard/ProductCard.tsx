@@ -3,6 +3,7 @@ import './ProductCard.scss';
 import ProductImage from '../ProductImage/ProductImage';
 import { useEffect, useRef, useState } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
+import OpenCloseButton from '../OpenCloseButton/OpenCloseButton';
 
 type Props = {
   product: IProduct;
@@ -53,6 +54,7 @@ const ProductCard = ({ product }: Props) => {
             />
             <p className="product-card__details">{product.description}</p>
           </div>
+          <OpenCloseButton action={flipCard} state={isFlipped} />
         </div>
       ) : (
         <div className="product-card__front" onClick={flipCard}>
@@ -66,8 +68,9 @@ const ProductCard = ({ product }: Props) => {
           </div>
           <div className="product-card__container">
             <p className="product-card__price">{`$${product.price}`}</p>
-            <p className="product-card__details">{product.title}</p>
+            <p className="product-card__title">{product.title}</p>
           </div>
+          <OpenCloseButton action={flipCard} state={isFlipped} />
         </div>
       )}
     </div>

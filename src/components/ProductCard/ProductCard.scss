@@ -1,6 +1,8 @@
 @import 'src/styles/_utils.scss';
 
 .product-card {
+  position: relative;
+
   width: 220px;
   border: 1px solid $c-border;
   border-radius: 8px;
@@ -19,6 +21,15 @@
     color: $c-dark;
   }
 
+  &__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  &__title,
   &__details {
     margin-top: 4px;
     color: $c-gray500;

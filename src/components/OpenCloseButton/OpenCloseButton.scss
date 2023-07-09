@@ -1,0 +1,30 @@
+@import 'src/styles/_utils.scss';
+
+.open-close {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 0 8px 8px;
+
+  &__height {
+    height: 40px;
+  }
+
+  &__button {
+    width: $buttonSize;
+    height: $buttonSize;
+    border-radius: 50%;
+
+    background-color: $c-gray600;
+
+    transition: background-color $transitionTime;
+
+    &:hover {
+      background-color: $c-gray300;
+    }
+  }
+}
