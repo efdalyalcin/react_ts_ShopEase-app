@@ -16,10 +16,10 @@
 
   &__icon {
     position: absolute;
-    width: 16px;
-    height: 2px;
-    border-radius: 2px;
-    left: calc(($buttonSize - 16px) / 2);
+    width: calc($buttonSize / 2);
+    height: calc($buttonSize / 16);
+    border-radius: calc($buttonSize / 16);
+    left: calc(($buttonSize - $buttonSize/2) / 2);
 
     background-color: $c-gray500;
     transition: background-color $transitionTime;
