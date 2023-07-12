@@ -35,7 +35,47 @@ const ProductCard = ({ product }: Props) => {
 
   return (
     <div className="product-card" ref={cardRef}>
-      {isFlipped ? (
+      <div
+        className="product-card__inner"
+        style={{ transform: isFlipped ? 'rotateY(180deg)' : '' }}
+      >
+        <div className="product-card__front" onClick={flipCard}>
+          <div className="product-card__image">
+            <ProductImage
+              img={product.image}
+              alt={product.title}
+              height="200px"
+              width="200px"
+            />
+          </div>
+          <div className="product-card__container">
+            <p className="product-card__price">{`$${product.price}`}</p>
+            <p className="product-card__title">{product.title}</p>
+          </div>
+          <OpenCloseButton action={flipCard} state={isFlipped} />
+        </div>
+        <div
+          className="product-card__back"
+          style={{
+            width: dimensions.frontWidth,
+            // height -2 is for the border of product-card since it is outside. Don't remove!!
+            height: dimensions.frontHeight - 2,
+          }}
+          // onClick={flipCard}
+        >
+          <div className="product-card__container">
+            <p className="product-card__price">{`$${product.price}`}</p>
+            <AddToCartButton
+              amount={amount}
+              decreaseAmount={decreaseAmount}
+              increaseAmount={increaseAmount}
+            />
+            <p className="product-card__details">{product.description}</p>
+          </div>
+          <OpenCloseButton action={flipCard} state={isFlipped} />
+        </div>
+      </div>
+      {/* {isFlipped ? (
         <div
           className="product-card__back"
           style={{
@@ -72,7 +112,7 @@ const ProductCard = ({ product }: Props) => {
           </div>
           <OpenCloseButton action={flipCard} state={isFlipped} />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
