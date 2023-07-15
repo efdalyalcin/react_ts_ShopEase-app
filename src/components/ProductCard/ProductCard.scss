@@ -58,6 +58,10 @@
     color: $c-gray500;
   }
 
+  &__details:hover {
+    cursor: pointer;
+  }
+
   &__back {
     padding: 8px 0;
     overflow-y: scroll;

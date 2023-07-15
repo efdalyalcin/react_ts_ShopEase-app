@@ -9,8 +9,10 @@ type Props = {
 const OpenCloseButton = ({ action, state }: Props) => {
   return (
     <>
-      <div className="open-close__height" />
-      <div className="open-close open-close__container">
+      <div
+        className="open-close open-close__container"
+        style={state ? { position: 'static' } : {}}
+      >
         <button type="button" className="open-close__button" onClick={action}>
           <div
             className={cn('open-close__icon', {

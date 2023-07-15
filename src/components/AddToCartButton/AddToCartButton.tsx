@@ -18,7 +18,7 @@ const AddToCartButton = ({ amount, decreaseAmount, increaseAmount }: Props) => {
           >
             -
           </button>
-          <input type="text" value={amount} className="controls__value" />
+          <div className="controls__value">{amount}</div>
           <button
             onClick={increaseAmount}
             type="button"
