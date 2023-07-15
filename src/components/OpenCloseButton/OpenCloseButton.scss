@@ -10,6 +10,10 @@
 
   padding: 0 8px 8px;
 
+  &--close-state {
+    position: static;
+  }
+
   &__height {
     height: 40px;
   }
@@ -54,5 +58,14 @@
     &:hover .open-close__icon {
       background-color: $c-gray200;
     }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

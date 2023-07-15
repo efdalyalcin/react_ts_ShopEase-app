@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './OpenCloseButton.scss';
 import cn from 'classnames';
 
@@ -7,11 +8,21 @@ type Props = {
 };
 
 const OpenCloseButton = ({ action, state }: Props) => {
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    setOpacity(0);
+    setTimeout(() => {
+      setOpacity(1);
+    }, 100);
+  }, [state]);
   return (
     <>
       <div
-        className="open-close open-close__container"
-        style={state ? { position: 'static' } : {}}
+        className={cn('open-close open-close__container', {
+          'open-close--close-state': state,
+        })}
+        style={{ opacity: opacity }}
       >
         <button type="button" className="open-close__button" onClick={action}>
           <div
