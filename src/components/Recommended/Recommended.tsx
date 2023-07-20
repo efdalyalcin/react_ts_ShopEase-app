@@ -11,7 +11,12 @@ export default function Recommended() {
   });
 
   if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="loading">
+        <h1 className="loading__text">Loading...</h1>
+      </div>
+    );
 
   return (
     <section>

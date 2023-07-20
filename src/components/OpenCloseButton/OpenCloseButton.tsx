@@ -10,6 +10,7 @@ type Props = {
 const OpenCloseButton = ({ action, state }: Props) => {
   const [opacity, setOpacity] = useState(0);
 
+  // this useEffect is used to negate the jumping effect from back to front of the card
   useEffect(() => {
     setOpacity(0);
     setTimeout(() => {
