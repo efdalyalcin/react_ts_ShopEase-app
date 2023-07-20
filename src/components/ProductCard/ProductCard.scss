@@ -4,8 +4,8 @@
   position: relative;
   perspective: 1000px;
 
-  width: 220px;
-  height: 356px;
+  width: $productCardWidth;
+  height: $productCardHeight;
   background-color: transparent;
 
   &__inner {
