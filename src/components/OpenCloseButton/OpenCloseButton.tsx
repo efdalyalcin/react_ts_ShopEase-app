@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './OpenCloseButton.scss';
 import cn from 'classnames';
 
@@ -7,10 +8,23 @@ type Props = {
 };
 
 const OpenCloseButton = ({ action, state }: Props) => {
+  const [opacity, setOpacity] = useState(0);
+
+  // this useEffect is used to negate the jumping effect from back to front of the card
+  useEffect(() => {
+    setOpacity(0);
+    setTimeout(() => {
+      setOpacity(1);
+    }, 100);
+  }, [state]);
   return (
     <>
-      <div className="open-close__height" />
-      <div className="open-close open-close__container">
+      <div
+        className={cn('open-close open-close__container', {
+          'open-close--close-state': state,
+        })}
+        style={{ opacity: opacity }}
+      >
         <button type="button" className="open-close__button" onClick={action}>
           <div
             className={cn('open-close__icon', {

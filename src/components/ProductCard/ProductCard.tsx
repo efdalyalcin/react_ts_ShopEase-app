@@ -20,6 +20,7 @@ const ProductCard = ({ product }: Props) => {
 
   const flipCard = () => setIsFlipped(() => !isFlipped);
   const decreaseAmount = () => {
+    console.log('sdkajdklajd kajdslk');
     if (amount >= 1) setAmount(() => amount - 1);
   };
   const increaseAmount = () => {
@@ -61,7 +62,6 @@ const ProductCard = ({ product }: Props) => {
             // height -2 is for the border of product-card since it is outside. Don't remove!!
             height: dimensions.frontHeight - 2,
           }}
-          // onClick={flipCard}
         >
           <div className="product-card__container">
             <p className="product-card__price">{`$${product.price}`}</p>
@@ -70,49 +70,13 @@ const ProductCard = ({ product }: Props) => {
               decreaseAmount={decreaseAmount}
               increaseAmount={increaseAmount}
             />
-            <p className="product-card__details">{product.description}</p>
+            <p className="product-card__details" onClick={flipCard}>
+              {product.description}
+            </p>
           </div>
           <OpenCloseButton action={flipCard} state={isFlipped} />
         </div>
       </div>
-      {/* {isFlipped ? (
-        <div
-          className="product-card__back"
-          style={{
-            width: dimensions.frontWidth,
-            // height -2 is for the border of product-card since it is outside. Don't remove!!
-            height: dimensions.frontHeight - 2,
-          }}
-          // onClick={flipCard}
-        >
-          <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
-            <AddToCartButton
-              amount={amount}
-              decreaseAmount={decreaseAmount}
-              increaseAmount={increaseAmount}
-            />
-            <p className="product-card__details">{product.description}</p>
-          </div>
-          <OpenCloseButton action={flipCard} state={isFlipped} />
-        </div>
-      ) : (
-        <div className="product-card__front" onClick={flipCard}>
-          <div className="product-card__image">
-            <ProductImage
-              img={product.image}
-              alt={product.title}
-              height="200px"
-              width="200px"
-            />
-          </div>
-          <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
-            <p className="product-card__title">{product.title}</p>
-          </div>
-          <OpenCloseButton action={flipCard} state={isFlipped} />
-        </div>
-      )} */}
     </div>
   );
 };
