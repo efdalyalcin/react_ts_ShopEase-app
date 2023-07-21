@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getProducts } from 'src/services/getProducts';
 import { IProduct } from 'src/types/product.type';
