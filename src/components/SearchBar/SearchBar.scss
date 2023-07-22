@@ -1,0 +1,86 @@
+@import 'src/styles/_utils.scss';
+
+.SearchBar {
+  width: 110%;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  padding: 0 40px;
+
+  @include mediaMaxWidth {
+    width: 90%;
+    padding: 0 24px;
+  }
+
+  @include mediaMaxWidth($mobileWidth) {
+    flex-direction: column;
+    padding: 0 12px;
+  }
+
+  &__bar {
+    display: flex;
+    gap: 8px;
+    flex-grow: 1;
+
+    padding: 16px;
+
+    border: 2px solid $c-blue100;
+    border-radius: $buttonBorderRadius;
+  }
+
+  &__magnifier {
+    height: 18px;
+    width: 18px;
+
+    background-image: url('src/assets/icons/magnifier.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__input {
+    font-size: $fontRegular;
+    line-height: $lineHeight;
+    padding: 0 8px;
+
+    border: none;
+    flex-grow: 1;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  &__button {
+    padding: 10px 40px;
+
+    background-color: $c-blue100;
+    border: 2px solid transparent;
+    border-radius: 12px;
+
+    font-size: $fontLarge;
+    line-height: $lineHeight;
+    color: $c-white;
+
+    transition: color $transitionTime, background-color $transitionTime,
+      border $transitionTime;
+
+    &:hover {
+      background-color: $c-primary;
+    }
+
+    &--disabled {
+      border-color: $c-blue100;
+
+      &:hover {
+        background-color: $c-blue100;
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+      }
+    }
+  }
+}
