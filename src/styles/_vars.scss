@@ -20,7 +20,21 @@ $c-orange200: #ffe6bf;
 $c-orange: #ff9017;
 $c-red: #fa3434;
 $c-border: #e0e0e0;
-$c-imageBackground: #fff;
+$c-white: #fff;
 
 // transition
 $transitionTime: 0.5s;
+
+// buttons
+$buttonSize: 32px;
+$buttonBorderRadius: 8px;
+
+// font-size
+$fontH2: 32px;
+$fontLarge: 20px;
+$fontRegular: 16px;
+$lineHeight: 1.25;
+
+// card dimensions
+$productCardHeight: 356px;
+$productCardWidth: 220px;

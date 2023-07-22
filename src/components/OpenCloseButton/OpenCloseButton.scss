@@ -1,0 +1,71 @@
+@import 'src/styles/_utils.scss';
+
+.open-close {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 0 16px 8px;
+
+  &--close-state {
+    position: static;
+  }
+
+  &__height {
+    height: 40px;
+  }
+
+  &__icon {
+    position: absolute;
+    width: calc($buttonSize / 2);
+    height: calc($buttonSize / 16);
+    border-radius: calc($buttonSize / 16);
+    left: calc(($buttonSize - $buttonSize/2) / 2);
+
+    background-color: $c-gray500;
+    transition: background-color $transitionTime;
+
+    &--horizontal {
+      transform: rotate(90deg);
+    }
+
+    &--diagonal {
+      transform: rotate(135deg);
+    }
+    &--diagonal-opposite {
+      transform: rotate(45deg);
+    }
+  }
+
+  &__button {
+    width: $buttonSize;
+    height: $buttonSize;
+    border-radius: 50%;
+
+    position: relative;
+
+    background-color: $c-gray200;
+
+    transition: background-color $transitionTime;
+
+    &:hover {
+      background-color: $c-gray500;
+    }
+
+    &:hover .open-close__icon {
+      background-color: $c-gray200;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
