@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import './SearchBar.scss';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 
 export default function SearchBar() {
   const [isSearchable, setIsSearchable] = useState(false);
@@ -45,10 +46,9 @@ export default function SearchBar() {
       </div>
       <Link
         to="/react_ts-search-user-app/search"
-        className={
-          'SearchBar__button' +
-          (isSearchable ? '' : ' SearchBar__button--disabled')
-        }
+        className={cn('SearchBar__button', {
+          'SearchBar__button--disabled': !isSearchable,
+        })}
         onClick={handleSearchButton}
       >
         Search

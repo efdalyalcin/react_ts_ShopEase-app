@@ -2,7 +2,7 @@
 
 .recommended {
   @extend %minMaxWidth;
-  padding: 8px 40px;
+  padding: 8px $pageSidePaddingL;
 
   &__container {
     margin-top: 20px;
