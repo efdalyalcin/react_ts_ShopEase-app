@@ -45,6 +45,10 @@ export default function SearchBar() {
           onChange={handleInput}
         />
       </div>
+      <select>
+        <option>sdja</option>
+        <option>sdjasdds</option>
+      </select>
       <Link
         to="/react_ts-search-user-app/search"
         className={cn('SearchBar__button', {

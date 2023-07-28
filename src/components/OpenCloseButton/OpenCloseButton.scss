@@ -12,6 +12,8 @@
 
   &--close-state {
     position: static;
+    // 10px right because of the scrool bar
+    padding: 0 10px 8px 16px;
   }
 
   &__height {

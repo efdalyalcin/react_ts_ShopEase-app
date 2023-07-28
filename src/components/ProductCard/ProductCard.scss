@@ -31,6 +31,20 @@
     transform: rotateY(180deg);
   }
 
+  &__back::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px $c-border;
+    background-color: transparent;
+    border-radius: 8px;
+  }
+  &__back::-webkit-scrollbar-thumb {
+    background-color: $c-gray500;
+    border-radius: 8px;
+  }
+  &__back::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+
   &__image {
     display: block;
     margin: 10px;
