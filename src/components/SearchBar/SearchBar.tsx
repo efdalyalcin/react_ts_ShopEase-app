@@ -19,6 +19,7 @@ export default function SearchBar() {
   }, [searchInput]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // this prevents the white space in the beginning
     const value = e.target.value.replace(/^\s+/, '');
     setSearchInput(value);
   };

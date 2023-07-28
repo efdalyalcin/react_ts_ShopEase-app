@@ -1,10 +1,10 @@
 import Recommended from 'src/components/Recommended/Recommended';
-import SearchBar from './components/SearchBar/SearchBar';
+import Header from 'src/components/Header/Header';
 
 function App() {
   return (
     <>
-      <SearchBar />
+      <Header />
       <Recommended />
     </>
   );

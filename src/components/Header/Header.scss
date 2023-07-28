@@ -1,0 +1,11 @@
+@import 'src/styles/_utils.scss';
+
+.header {
+  @extend %minMaxWidth;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: $componentInnerPaddingR $pageSidePaddingL;
+}
