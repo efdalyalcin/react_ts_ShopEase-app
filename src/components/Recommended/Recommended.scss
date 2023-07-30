@@ -4,12 +4,6 @@
   @extend %minMaxWidth;
   padding: 8px 40px;
 
-  &__text {
-    font-size: $fontH2;
-    line-height: $lineHeight;
-    color: $c-dark;
-  }
-
   &__container {
     margin-top: 20px;
     @extend %center;
@@ -32,19 +26,5 @@
     border: 1px solid $c-border;
     border-radius: 8px;
     box-shadow: 0px 4px 4px $c-gray400;
-  }
-}
-
-.loading {
-  position: absolute;
-  inset: 0 0 0 0;
-  background-color: $c-gray400;
-
-  &__text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: $c-dark;
   }
 }

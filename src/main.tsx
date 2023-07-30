@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import App from 'src/App.tsx';
 import './reset.scss';
+import './global.scss';
 
 const queryClient = new QueryClient();
 
