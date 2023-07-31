@@ -9,12 +9,17 @@ import { nanoid } from 'nanoid';
 export default function SearchBar() {
   const [isSearchable, setIsSearchable] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+  const [categories, setCategories] = useState(['ALL CATEGORIES']);
 
-  // put all categories in the begining of data, find a way
-  const { isLoading, isError, data, error } = useQuery({
-    queryKey: ['categories'],
-    queryFn: getCategories,
-  });
+  useEffect(() => {
+    getCategories().then((data) => {
+      const capitalizedData: string[] = [];
+      data.map((nonCapitalized) =>
+        capitalizedData.push(nonCapitalized.toUpperCase())
+      );
+      setCategories(['ALL CATEGORIES', ...capitalizedData]);
+    });
+  }, []);
 
   useEffect(() => {
     if (searchInput.length > 2) {
@@ -39,14 +44,6 @@ export default function SearchBar() {
     [isSearchable]
   );
 
-  if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading)
-    return (
-      <div className="loading">
-        <h1 className="loading__text">Loading...</h1>
-      </div>
-    );
-
   return (
     <div className="SearchBar">
       <div className="SearchBar__bar">
@@ -60,8 +57,8 @@ export default function SearchBar() {
         />
       </div>
       <select>
-        {data?.map((category) => {
-          return <option key={nanoid()}>{category}</option>;
+        {categories?.map((category) => {
+          return <option key={nanoid(5)}>{category}</option>;
         })}
       </select>
       <Link
