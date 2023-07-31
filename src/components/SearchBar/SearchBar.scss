@@ -35,16 +35,44 @@
   }
 
   &__input {
+    padding: 0 8px;
+    flex-grow: 1;
+
     font-size: $fontRegular;
     line-height: $lineHeight;
-    padding: 0 8px;
 
     border: none;
-    flex-grow: 1;
 
     &:focus {
       outline: none;
       border: none;
+    }
+
+    &::placeholder {
+      color: $c-gray400;
+    }
+  }
+
+  &__select {
+    padding: 8px 4px;
+    border-top: 2px solid $c-primary;
+    border-bottom: 2px solid $c-primary;
+    border-left: none;
+    border-right: none;
+
+    appearance: none;
+    min-width: 200px;
+
+    font-family: 'Inter-Medium', 'Roboto', 'Maison Neue', sans-serif;
+    color: $c-dark;
+    font-size: $fontRegular;
+    line-height: $lineHeight;
+    text-align: center;
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+      outline: 2px solid $c-primary;
     }
   }
 

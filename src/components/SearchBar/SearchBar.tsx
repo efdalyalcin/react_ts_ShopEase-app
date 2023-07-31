@@ -2,24 +2,19 @@ import { useCallback, useEffect, useState } from 'react';
 import './SearchBar.scss';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { useQuery } from 'react-query';
 import { getCategories } from 'src/services/getCategories';
 import { nanoid } from 'nanoid';
+import { useQuery } from 'react-query';
 
 export default function SearchBar() {
   const [isSearchable, setIsSearchable] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const [categories, setCategories] = useState(['ALL CATEGORIES']);
+  const [selectedCategory, setSelectedCategory] = useState('all categories');
 
-  useEffect(() => {
-    getCategories().then((data) => {
-      const capitalizedData: string[] = [];
-      data.map((nonCapitalized) =>
-        capitalizedData.push(nonCapitalized.toUpperCase())
-      );
-      setCategories(['ALL CATEGORIES', ...capitalizedData]);
-    });
-  }, []);
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ['category'],
+    queryFn: getCategories,
+  });
 
   useEffect(() => {
     if (searchInput.length > 2) {
@@ -35,6 +30,10 @@ export default function SearchBar() {
     setSearchInput(value);
   };
 
+  const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCategory(e.target.value);
+  };
+
   const handleSearchButton = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       if (!isSearchable) {
@@ -43,6 +42,14 @@ export default function SearchBar() {
     },
     [isSearchable]
   );
+
+  if (isError) return <div>{`Error on the server: ${error}`}</div>;
+  if (isLoading)
+    return (
+      <div className="loading">
+        <h1 className="loading__text">Loading...</h1>
+      </div>
+    );
 
   return (
     <div className="SearchBar">
@@ -56,9 +63,19 @@ export default function SearchBar() {
           onChange={handleInput}
         />
       </div>
-      <select>
-        {categories?.map((category) => {
-          return <option key={nanoid(5)}>{category}</option>;
+      <select
+        onChange={(e) => handleCategoriesChange(e)}
+        className="SearchBar__select"
+      >
+        <option key={'allCategories'} value={'all categories'}>
+          ALL CATEGORIES
+        </option>
+        {data?.map((category, i) => {
+          return (
+            <option key={`${i}.${category}`} value={category}>
+              {category.toUpperCase()}
+            </option>
+          );
         })}
       </select>
       <Link
