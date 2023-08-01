@@ -78,7 +78,7 @@ export default function SearchBar() {
         })}
       </select>
       <Link
-        to="/react_ts_ShopEase-app/search"
+        to="/search"
         className={cn('SearchBar__button', {
           'SearchBar__button--disabled': !isSearchable,
         })}

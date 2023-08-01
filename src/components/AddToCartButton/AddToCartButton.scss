@@ -1,6 +1,6 @@
 @import 'src/styles/_utils.scss';
 
-.controls {
+.control-buttons {
   position: relative;
   // z-index needs to stay high because of safari breaking because of the flip effect
   z-index: 999;

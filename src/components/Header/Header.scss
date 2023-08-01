@@ -9,3 +9,24 @@
 
   padding: $componentInnerPaddingR $pageSidePaddingL;
 }
+
+.nav-controls {
+  display: grid;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    cursor: pointer;
+  }
+
+  &__title {
+    font-size: $fontSmall;
+    color: $c-dark;
+  }
+}
