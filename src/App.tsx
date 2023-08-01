@@ -1,12 +1,16 @@
-import Recommended from 'src/components/Recommended/Recommended';
-import Header from 'src/components/Header/Header';
+import { Route, Router, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Recommended />
-    </>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<SearchPage />} />
+        {/* <Route path="*" element={<ErrorPage />} /> */}
+      </Routes>
+    </div>
   );
 }
 

@@ -3,7 +3,6 @@ import './SearchBar.scss';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { getCategories } from 'src/services/getCategories';
-import { nanoid } from 'nanoid';
 import { useQuery } from 'react-query';
 
 export default function SearchBar() {
@@ -79,7 +78,7 @@ export default function SearchBar() {
         })}
       </select>
       <Link
-        to="/react_ts-search-user-app/search"
+        to="/react_ts_ShopEase-app/search"
         className={cn('SearchBar__button', {
           'SearchBar__button--disabled': !isSearchable,
         })}
