@@ -4,7 +4,13 @@ import SearchBar from '../SearchBar/SearchBar';
 export default function Header() {
   return (
     <header className="header">
-      <div>Brand</div>
+      <div className="header__logo">
+        <img
+          className="header__logo-image"
+          src="src/assets/icons/brand_name.png"
+          alt="shopEase brand logo"
+        />
+      </div>
       <SearchBar />
       <div className="nav-controls">
         <div className="nav-controls__item">
