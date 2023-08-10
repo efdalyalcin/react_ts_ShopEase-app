@@ -4,11 +4,8 @@
   display: flex;
   align-items: center;
 
-  padding: 0 $pageSidePaddingL;
-
   @include mediaMaxWidth($mobileWidth) {
     flex-direction: column;
-    padding: 0 $pageSidePaddingS;
   }
 
   &__bar {
@@ -54,19 +51,19 @@
   }
 
   &__select {
-    padding: 8px 4px;
+    padding: 10px 4px;
     border-top: 2px solid $c-primary;
     border-bottom: 2px solid $c-primary;
     border-left: none;
     border-right: none;
 
     appearance: none;
-    min-width: 200px;
+    min-width: 160px;
 
     font-family: 'Inter-Medium', 'Roboto', 'Maison Neue', sans-serif;
     color: $c-dark;
-    font-size: $fontRegular;
-    line-height: $lineHeight;
+    font-size: $fontSmall;
+    line-height: 16px;
     text-align: center;
 
     cursor: pointer;
@@ -85,8 +82,8 @@
     border: 2px solid transparent;
     border-radius: 0 $buttonBorderRadius $buttonBorderRadius 0;
 
-    font-size: $fontLarge;
-    line-height: 1;
+    font-size: $fontRegular;
+    line-height: $lineHeight;
     color: $c-white;
 
     transition: color $transitionTime, background-color $transitionTime,
