@@ -4,10 +4,6 @@
   display: flex;
   align-items: center;
 
-  @include mediaMaxWidth($mobileWidth) {
-    flex-direction: column;
-  }
-
   &__bar {
     min-width: 300px;
 

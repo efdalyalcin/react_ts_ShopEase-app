@@ -11,7 +11,9 @@ export default function Header() {
           alt="shopEase brand logo"
         />
       </div>
-      <SearchBar />
+      <div className="header__bar">
+        <SearchBar />
+      </div>
       <div className="nav-controls">
         <div className="nav-controls__item">
           <img src="/src/assets/icons/account_circle.svg" alt="Account" />
