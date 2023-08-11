@@ -1,5 +1,5 @@
 import { Route, Router, Routes } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import SearchPage from './pages/SearchPage';
 
 function App() {

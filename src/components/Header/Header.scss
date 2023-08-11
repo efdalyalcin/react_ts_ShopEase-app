@@ -1,8 +1,6 @@
 @import 'src/styles/_utils.scss';
 
 .header {
-  @extend %minMaxWidth;
-
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   gap: 40px;

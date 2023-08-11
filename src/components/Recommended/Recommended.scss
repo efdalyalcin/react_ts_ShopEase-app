@@ -6,7 +6,6 @@
   &__container {
     margin-top: 20px;
     @extend %center;
-    @extend %minMaxWidth;
     padding: $componentInnerPaddingR;
 
     height: calc($productCardHeight * 2 + 60px);
