@@ -4,6 +4,12 @@
   display: flex;
   align-items: center;
 
+  @include mediaMaxWidth($mobileWidth) {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px 0;
+  }
+
   &__bar {
     min-width: 300px;
 
@@ -15,6 +21,13 @@
 
     border: 2px solid $c-primary;
     border-radius: $buttonBorderRadius 0 0 $buttonBorderRadius;
+
+    @include mediaMaxWidth($mobileWidth) {
+      grid-row: 1 / 1;
+      grid-column: 1 / 1;
+
+      min-width: 120px;
+    }
   }
 
   &__magnifier {
@@ -69,6 +82,11 @@
       box-shadow: none;
       outline: 2px solid $c-primary;
     }
+
+    @include mediaMaxWidth($mobileWidth) {
+      grid-row: 2 / 2;
+      grid-column: 1 / -1;
+    }
   }
 
   &__button {
@@ -81,6 +99,7 @@
     font-size: $fontRegular;
     line-height: $lineHeight;
     color: $c-white;
+    text-align: center;
 
     transition: color $transitionTime, background-color $transitionTime,
       border $transitionTime;
@@ -95,6 +114,11 @@
       &:hover {
         color: $c-white;
       }
+    }
+
+    @include mediaMaxWidth($mobileWidth) {
+      grid-row: 1 / 1;
+      grid-column: 2 / -1;
     }
   }
 }

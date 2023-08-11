@@ -1,7 +1,6 @@
 @import 'src/styles/_utils.scss';
 
 .recommended {
-  @extend %minMaxWidth;
   padding: 8px $pageSidePaddingL;
 
   &__container {
