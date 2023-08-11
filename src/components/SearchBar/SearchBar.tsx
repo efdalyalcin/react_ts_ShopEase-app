@@ -9,11 +9,26 @@ export default function SearchBar() {
   const [isSearchable, setIsSearchable] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all categories');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ['category'],
     queryFn: getCategories,
   });
+
+  // #region window width
+  useEffect(() => {
+    const handleWidthResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleWidthResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWidthResize);
+    };
+  }, []);
+  // #endregion
 
   useEffect(() => {
     if (searchInput.length > 2) {
@@ -62,21 +77,49 @@ export default function SearchBar() {
           onChange={handleInput}
         />
       </div>
-      <select
-        onChange={(e) => handleCategoriesChange(e)}
-        className="SearchBar__select"
-      >
-        <option key={'allCategories'} value={'all categories'}>
-          ALL CATEGORIES
-        </option>
-        {data?.map((category, i) => {
-          return (
-            <option key={`${i}.${category}`} value={category}>
-              {category.toUpperCase()}
+      {
+        // #region Categories Selection
+        windowWidth > 734 ? (
+          <select
+            onChange={(e) => handleCategoriesChange(e)}
+            className="SearchBar__select"
+          >
+            <option key={'allCategories'} value={'all categories'}>
+              ALL CATEGORIES
             </option>
-          );
-        })}
-      </select>
+            {data?.map((category, i) => {
+              return (
+                <option key={`${i}.${category}`} value={category}>
+                  {category.toUpperCase()}
+                </option>
+              );
+            })}
+          </select>
+        ) : (
+          <div className="SearchBar__select">
+            <button
+              type="button"
+              value={'all categories'}
+              className="SearchBar__select-buttons"
+            >
+              ALL CATEGORIES
+            </button>
+            {data?.map((category, i) => {
+              return (
+                <button
+                  key={`${i}.${category}`}
+                  value={category}
+                  className="SearchBar__select-buttons"
+                >
+                  {category.toUpperCase()}
+                </button>
+              );
+            })}
+          </div>
+        )
+        // #endregion
+      }
+
       <Link
         to="/search"
         className={cn('SearchBar__button', {
