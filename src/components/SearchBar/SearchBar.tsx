@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { getCategories } from 'src/services/getCategories';
 import { useQuery } from 'react-query';
+import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
 
 export default function SearchBar() {
   const [isSearchable, setIsSearchable] = useState(false);
@@ -57,13 +58,13 @@ export default function SearchBar() {
     [isSearchable]
   );
 
-  if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading)
-    return (
-      <div className="loading">
-        <h1 className="loading__text">Loading...</h1>
-      </div>
-    );
+  // if (isError) return <div>{`Error on the server: ${error}`}</div>;
+  // if (isLoading)
+  //   return (
+  //     <div className="loading">
+  //       <h1 className="loading__text">Loading...</h1>
+  //     </div>
+  //   );
 
   return (
     <div className="SearchBar">
@@ -96,30 +97,15 @@ export default function SearchBar() {
             })}
           </select>
         ) : (
-          <div className="SearchBar__select">
-            <button
-              type="button"
-              value={'all categories'}
-              className="SearchBar__select-buttons"
-            >
-              ALL CATEGORIES
-            </button>
-            {data?.map((category, i) => {
-              return (
-                <button
-                  key={`${i}.${category}`}
-                  value={category}
-                  className="SearchBar__select-buttons"
-                >
-                  {category.toUpperCase()}
-                </button>
-              );
-            })}
-          </div>
+          <HorizontalDraggableButtons
+            data={data}
+            additionalFirstButton="all categories"
+            additionalLastButton=""
+            gridArea=""
+          />
         )
         // #endregion
       }
-
       <Link
         to="/search"
         className={cn('SearchBar__button', {
