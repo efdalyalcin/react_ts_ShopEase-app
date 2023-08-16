@@ -1,0 +1,6 @@
+@import 'src/styles/_utils.scss';
+
+.home-page {
+  @extend %minMaxWidthPage;
+  @extend %center;
+}
