@@ -11,12 +11,12 @@ export default function HorizontalDraggableButtons({
   additionalFirstButton,
   data,
   additionalLastButton,
+  gridArea,
 }: Props) {
   return (
     <div
       className="horizontal-draggable-buttons"
-      // style={{'grid-area': 2/1/2/-1}}
-      // grid-area: 2 / 1 / 2 / -1;
+      style={{ gridArea: gridArea }}
     >
       {additionalFirstButton ? (
         <button

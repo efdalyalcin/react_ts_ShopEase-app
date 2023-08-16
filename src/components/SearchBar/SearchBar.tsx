@@ -101,7 +101,7 @@ export default function SearchBar() {
             data={data}
             additionalFirstButton="all categories"
             additionalLastButton=""
-            gridArea=""
+            gridArea="2 / 1 / 2 / -1"
           />
         )
         // #endregion
