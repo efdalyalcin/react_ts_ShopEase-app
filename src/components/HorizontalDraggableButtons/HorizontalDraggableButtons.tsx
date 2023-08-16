@@ -1,3 +1,4 @@
+import ScrollContainer from 'react-indiana-drag-scroll';
 import './HorizontalDraggableButtons.scss';
 
 type Props = {
@@ -5,6 +6,7 @@ type Props = {
   data?: string[];
   additionalLastButton?: string;
   gridArea?: string;
+  handleClick: (e: any) => void;
 };
 
 export default function HorizontalDraggableButtons({
@@ -12,41 +14,49 @@ export default function HorizontalDraggableButtons({
   data,
   additionalLastButton,
   gridArea,
+  handleClick,
 }: Props) {
   return (
-    <div
-      className="horizontal-draggable-buttons"
+    <ScrollContainer
+      vertical={false}
+      horizontal
       style={{ gridArea: gridArea }}
+      className="horizontal-draggable-buttons__container"
     >
-      {additionalFirstButton ? (
-        <button
-          type="button"
-          value={additionalFirstButton}
-          className="horizontal-draggable-buttons__button"
-        >
-          {additionalFirstButton?.toUpperCase()}
-        </button>
-      ) : null}
-      {data?.map((buttonText, i) => {
-        return (
+      <div className="horizontal-draggable-buttons">
+        {additionalFirstButton ? (
           <button
-            key={`${i}.${buttonText}`}
-            value={buttonText}
+            type="button"
+            value={additionalFirstButton}
             className="horizontal-draggable-buttons__button"
+            onClick={handleClick}
           >
-            {buttonText.toUpperCase()}
+            {additionalFirstButton?.toUpperCase()}
           </button>
-        );
-      })}
-      {additionalLastButton ? (
-        <button
-          type="button"
-          value={additionalLastButton}
-          className="horizontal-draggable-buttons__button"
-        >
-          {additionalLastButton?.toUpperCase()}
-        </button>
-      ) : null}
-    </div>
+        ) : null}
+        {data?.map((buttonText, i) => {
+          return (
+            <button
+              key={`${i}.${buttonText}`}
+              value={buttonText}
+              className="horizontal-draggable-buttons__button"
+              onClick={handleClick}
+            >
+              {buttonText.toUpperCase()}
+            </button>
+          );
+        })}
+        {additionalLastButton ? (
+          <button
+            type="button"
+            value={additionalLastButton}
+            className="horizontal-draggable-buttons__button"
+            onClick={handleClick}
+          >
+            {additionalLastButton?.toUpperCase()}
+          </button>
+        ) : null}
+      </div>
+    </ScrollContainer>
   );
 }

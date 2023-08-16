@@ -49,6 +49,12 @@ export default function SearchBar() {
     setSelectedCategory(e.target.value);
   };
 
+  const handleCategoriesByButtons = (
+    e: React.ChangeEvent<HTMLButtonElement>
+  ) => {
+    setSelectedCategory(e.target.value);
+  };
+
   const handleSearchButton = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       if (!isSearchable) {
@@ -58,13 +64,15 @@ export default function SearchBar() {
     [isSearchable]
   );
 
-  // if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  // if (isLoading)
-  //   return (
-  //     <div className="loading">
-  //       <h1 className="loading__text">Loading...</h1>
-  //     </div>
-  //   );
+  console.log(selectedCategory);
+
+  if (isError) return <div>{`Error on the server: ${error}`}</div>;
+  if (isLoading)
+    return (
+      <div className="loading">
+        <h1 className="loading__text">Loading...</h1>
+      </div>
+    );
 
   return (
     <div className="SearchBar">
@@ -102,6 +110,7 @@ export default function SearchBar() {
             additionalFirstButton="all categories"
             additionalLastButton=""
             gridArea="2 / 1 / 2 / -1"
+            handleClick={handleCategoriesByButtons}
           />
         )
         // #endregion
