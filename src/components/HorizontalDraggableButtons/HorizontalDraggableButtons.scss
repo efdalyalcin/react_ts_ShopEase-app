@@ -1,0 +1,33 @@
+@import 'src/styles/_utils.scss';
+
+.horizontal-draggable-buttons {
+  padding: 0;
+
+  border: none;
+  cursor: initial;
+
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  gap: 16px;
+
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__button {
+    padding: 8px;
+
+    white-space: nowrap;
+    background-color: $c-gray200;
+    border-radius: $buttonBorderRadius;
+
+    color: $c-primary;
+  }
+}

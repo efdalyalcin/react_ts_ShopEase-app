@@ -8,21 +8,21 @@ type Props = {
 
 const AddToCartButton = ({ amount, decreaseAmount, increaseAmount }: Props) => {
   return (
-    <div className="controls">
+    <div className="control-buttons">
       {amount > 0 ? (
         <>
           <button
             onClick={decreaseAmount}
             type="button"
-            className="controls__button"
+            className="control-buttons__button"
           >
             -
           </button>
-          <div className="controls__value">{amount}</div>
+          <div className="control-buttons__value">{amount}</div>
           <button
             onClick={increaseAmount}
             type="button"
-            className="controls__button"
+            className="control-buttons__button"
           >
             +
           </button>
@@ -30,7 +30,7 @@ const AddToCartButton = ({ amount, decreaseAmount, increaseAmount }: Props) => {
       ) : (
         <button
           type="button"
-          className="controls__add-to-cart"
+          className="control-buttons__add-to-cart"
           onClick={increaseAmount}
         >
           Add to Cart

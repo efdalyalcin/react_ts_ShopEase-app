@@ -2,6 +2,7 @@
 $maxWidth: 1360px;
 $tabletWidth: 1068px;
 $mobileWidth: 734px;
+$extraSmallWidth: 440px;
 $minWidth: 360px;
 
 // color
@@ -33,8 +34,15 @@ $buttonBorderRadius: 8px;
 $fontH2: 32px;
 $fontLarge: 20px;
 $fontRegular: 16px;
+$fontSmall: 12px;
 $lineHeight: 1.25;
 
 // card dimensions
 $productCardHeight: 356px;
 $productCardWidth: 220px;
+
+// paddings
+$pageSidePaddingL: 40px;
+$pageSidePaddingM: 24px;
+$pageSidePaddingS: 12px;
+$componentInnerPaddingR: 20px;
