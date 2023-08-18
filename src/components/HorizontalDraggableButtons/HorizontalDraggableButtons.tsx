@@ -1,4 +1,5 @@
 import ScrollContainer from 'react-indiana-drag-scroll';
+import cn from 'classnames';
 import './HorizontalDraggableButtons.scss';
 
 type Props = {
@@ -7,6 +8,7 @@ type Props = {
   additionalLastButton?: string;
   gridArea?: string;
   handleClick: (e: any) => void;
+  selected?: string;
 };
 
 export default function HorizontalDraggableButtons({
@@ -15,6 +17,7 @@ export default function HorizontalDraggableButtons({
   additionalLastButton,
   gridArea,
   handleClick,
+  selected,
 }: Props) {
   return (
     <ScrollContainer
@@ -28,7 +31,10 @@ export default function HorizontalDraggableButtons({
           <button
             type="button"
             value={additionalFirstButton}
-            className="horizontal-draggable-buttons__button"
+            className={cn('horizontal-draggable-buttons__button', {
+              'horizontal-draggable-buttons__button--selected':
+                selected === additionalFirstButton,
+            })}
             onClick={handleClick}
           >
             {additionalFirstButton?.toUpperCase()}
@@ -39,7 +45,10 @@ export default function HorizontalDraggableButtons({
             <button
               key={`${i}.${buttonText}`}
               value={buttonText}
-              className="horizontal-draggable-buttons__button"
+              className={cn('horizontal-draggable-buttons__button', {
+                'horizontal-draggable-buttons__button--selected':
+                  selected === buttonText,
+              })}
               onClick={handleClick}
             >
               {buttonText.toUpperCase()}
@@ -50,7 +59,10 @@ export default function HorizontalDraggableButtons({
           <button
             type="button"
             value={additionalLastButton}
-            className="horizontal-draggable-buttons__button"
+            className={cn('horizontal-draggable-buttons__button', {
+              'horizontal-draggable-buttons__button--selected':
+                selected === additionalLastButton,
+            })}
             onClick={handleClick}
           >
             {additionalLastButton?.toUpperCase()}

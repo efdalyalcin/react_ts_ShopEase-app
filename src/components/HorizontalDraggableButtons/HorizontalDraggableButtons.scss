@@ -29,5 +29,12 @@
     border-radius: $buttonBorderRadius;
 
     color: $c-primary;
+
+    transition: color $transitionTime, background-color $transitionTime;
+
+    &--selected {
+      background-color: $c-primary;
+      color: $c-gray200;
+    }
   }
 }

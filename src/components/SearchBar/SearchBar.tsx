@@ -111,6 +111,7 @@ export default function SearchBar() {
             additionalLastButton=""
             gridArea="2 / 1 / 2 / -1"
             handleClick={handleCategoriesByButtons}
+            selected={selectedCategory}
           />
         )
         // #endregion
