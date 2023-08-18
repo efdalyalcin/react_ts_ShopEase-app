@@ -1,12 +1,12 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
-interface ISelectCategoryStore {
+interface ISelectedCategoryStore {
   selectedCategory: string;
   setCategory: (category: string) => void;
   clearCategory: () => void;
 }
 
-const useSelectCategory = create<ISelectCategoryStore>()((set) => ({
+const useSelectedCategory = create<ISelectedCategoryStore>()((set) => ({
   selectedCategory: '',
   setCategory: (category) => {
     set(() => ({
@@ -18,4 +18,4 @@ const useSelectCategory = create<ISelectCategoryStore>()((set) => ({
   },
 }));
 
-export default useSelectCategory;
+export default useSelectedCategory;
