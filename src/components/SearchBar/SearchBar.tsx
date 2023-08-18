@@ -59,12 +59,13 @@ export default function SearchBar() {
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       if (!isSearchable) {
         e.preventDefault();
+        return;
       }
+
+      // add the category to the store, when search page opens make an api call with stored item
     },
     [isSearchable]
   );
-
-  console.log(selectedCategory);
 
   if (isError) return <div>{`Error on the server: ${error}`}</div>;
   if (isLoading)
