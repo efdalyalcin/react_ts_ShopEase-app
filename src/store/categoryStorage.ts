@@ -2,18 +2,18 @@ import { create } from 'zustand';
 
 interface ISelectedCategoryStore {
   selectedCategory: string;
-  setCategory: (category: string) => void;
-  clearCategory: () => void;
+  setSelectedCategory: (category: string) => void;
+  clearSelectedCategory: () => void;
 }
 
 const useSelectedCategory = create<ISelectedCategoryStore>()((set) => ({
-  selectedCategory: '',
-  setCategory: (category) => {
+  selectedCategory: 'all categories',
+  setSelectedCategory: (category) => {
     set(() => ({
       selectedCategory: category,
     }));
   },
-  clearCategory: () => {
+  clearSelectedCategory: () => {
     set(() => ({ selectedCategory: 'all categories' }));
   },
 }));
