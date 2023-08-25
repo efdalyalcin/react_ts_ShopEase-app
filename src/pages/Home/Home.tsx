@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <section className="home-page">
       <Header />
-      <Catalog />
+      <Catalog title={''} category={''} imageUrl="" />
       <Recommended />
     </section>
   );
