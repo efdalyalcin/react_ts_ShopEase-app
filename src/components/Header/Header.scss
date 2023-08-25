@@ -16,6 +16,14 @@
 
   padding: $componentInnerPaddingR $pageSidePaddingL;
 
+  @include mediaMaxWidth {
+    padding: $componentInnerPaddingR $pageSidePaddingM;
+  }
+
+  @include mediaMaxWidth($mobileWidth) {
+    padding: $componentInnerPaddingS $pageSidePaddingS;
+  }
+
   &__logo {
     display: flex;
     justify-content: center;

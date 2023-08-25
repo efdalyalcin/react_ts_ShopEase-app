@@ -7,7 +7,11 @@ export default function Home() {
   return (
     <section className="home-page">
       <Header />
-      <Catalog title={''} category={''} imageUrl="" />
+      <Catalog
+        title={'Consumer Electronics and Gadgets'}
+        category={'electronics'}
+        imageUrl="src/assets/images/electronics.png"
+      />
       <Recommended />
     </section>
   );

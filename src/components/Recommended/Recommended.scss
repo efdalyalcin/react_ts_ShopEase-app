@@ -3,6 +3,14 @@
 .recommended {
   padding: 8px $pageSidePaddingL;
 
+  @include mediaMaxWidth {
+    padding: 8px $pageSidePaddingM;
+  }
+
+  @include mediaMaxWidth($mobileWidth) {
+    padding: 8px $pageSidePaddingS;
+  }
+
   &__container {
     margin-top: 20px;
     @extend %center;
