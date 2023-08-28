@@ -5,7 +5,7 @@ import Catalog from 'src/components/Catalog/Catalog';
 
 export default function Home() {
   return (
-    <section className="home-page">
+    <main className="home-page">
       <Header />
       <Catalog
         title={'Consumer Electronics and Gadgets'}
@@ -13,6 +13,6 @@ export default function Home() {
         imageUrl="src/assets/images/electronics.png"
       />
       <Recommended />
-    </section>
+    </main>
   );
 }
