@@ -5,12 +5,13 @@ import cn from 'classnames';
 import { getCategories } from 'src/services/getCategories';
 import { useQuery } from 'react-query';
 import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
+import useSelectedCategory from 'src/store/categoryStorage';
 
 export default function SearchBar() {
   const [isSearchable, setIsSearchable] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all categories');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ['category'],
@@ -49,22 +50,31 @@ export default function SearchBar() {
     setSelectedCategory(e.target.value);
   };
 
+  const handleCategoriesByButtons = (
+    e: React.ChangeEvent<HTMLButtonElement>
+  ) => {
+    setSelectedCategory(e.target.value);
+  };
+
   const handleSearchButton = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       if (!isSearchable) {
         e.preventDefault();
+        return;
       }
+
+      // otherwise link takes to search page, search is handled in the page itself.
     },
     [isSearchable]
   );
 
-  // if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  // if (isLoading)
-  //   return (
-  //     <div className="loading">
-  //       <h1 className="loading__text">Loading...</h1>
-  //     </div>
-  //   );
+  if (isError) return <div>{`Error on the server: ${error}`}</div>;
+  if (isLoading)
+    return (
+      <div className="loading">
+        <h1 className="loading__text">Loading...</h1>
+      </div>
+    );
 
   return (
     <div className="SearchBar">
@@ -102,6 +112,8 @@ export default function SearchBar() {
             additionalFirstButton="all categories"
             additionalLastButton=""
             gridArea="2 / 1 / 2 / -1"
+            handleClick={handleCategoriesByButtons}
+            selected={selectedCategory}
           />
         )
         // #endregion
