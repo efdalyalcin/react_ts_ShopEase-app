@@ -1,5 +1,7 @@
+import { useQuery } from 'react-query';
 import CatalogCard from '../CatalogCard/CatalogCard';
 import './Catalog.scss';
+import { getSingleCategory } from 'src/services/getSingleCategory';
 
 type Props = {
   title: string;
@@ -8,6 +10,20 @@ type Props = {
 };
 
 export default function Catalog({ title, category, imageUrl }: Props) {
+  const { isLoading, isError, data, error, refetch } = useQuery({
+    queryKey: [`${category}-products`],
+    queryFn: () => getSingleCategory(category),
+  });
+
+  if (isError) return <div>{`Error on the server: ${error}`}</div>;
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <h1 className="loading__text">Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <section className="section catalog-section">
       <div className="catalog">
@@ -20,7 +36,9 @@ export default function Catalog({ title, category, imageUrl }: Props) {
           <h3 className="catalog__banner-title">{title}</h3>
         </div>
         <div className="catalog__cards">
-          <CatalogCard />
+          {data?.map((product) => (
+            <CatalogCard key={product.id} />
+          ))}
         </div>
       </div>
     </section>
