@@ -37,7 +37,7 @@ export default function Catalog({ title, category, imageUrl }: Props) {
         </div>
         <div className="catalog__cards">
           {data?.map((product) => (
-            <CatalogCard key={product.id} />
+            <CatalogCard key={product.id} title={product.title} />
           ))}
         </div>
       </div>
