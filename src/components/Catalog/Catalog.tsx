@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function Catalog({ title, category, imageUrl }: Props) {
-  const { isLoading, isError, data, error, refetch } = useQuery({
+  const { isLoading, isError, data, error } = useQuery({
     queryKey: [`${category}-products`],
     queryFn: () => getSingleCategory(category),
   });
