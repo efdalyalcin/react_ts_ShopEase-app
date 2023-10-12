@@ -1,4 +1,12 @@
 @import 'src/styles/_utils.scss';
 
 .catalog-card {
+  display: flex;
+  align-items: center;
+  width: 600px;
+
+  &__image {
+    width: 82px;
+    height: 82px;
+  }
 }
