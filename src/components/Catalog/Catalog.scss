@@ -30,6 +30,7 @@
   &__banner {
     position: relative;
     @extend %center;
+    overflow: hidden;
 
     width: 280px;
 
@@ -54,5 +55,10 @@
     z-index: 10;
     top: 20%;
     left: $componentInnerPaddingR;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
   }
 }

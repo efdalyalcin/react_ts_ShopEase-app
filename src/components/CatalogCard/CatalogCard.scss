@@ -1,9 +1,13 @@
 @import 'src/styles/_utils.scss';
 
 .catalog-card {
+  width: 220px;
+
   display: flex;
   align-items: center;
-  width: 600px;
+  justify-content: space-between;
+
+  padding: $componentInnerPaddingS;
 
   &__image {
     width: 82px;
