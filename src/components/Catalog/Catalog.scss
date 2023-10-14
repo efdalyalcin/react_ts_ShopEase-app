@@ -60,5 +60,9 @@
   &__cards {
     display: flex;
     flex-wrap: wrap;
+    gap: $cardGap;
+
+    justify-content: center;
+    align-items: center;
   }
 }

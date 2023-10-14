@@ -7,7 +7,26 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: $componentInnerPaddingS;
+  padding: $componentInnerPaddingR $componentInnerPaddingS;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $cardGap;
+
+    align-self: flex-start;
+  }
+
+  &__title {
+    color: $c-dark;
+    font-size: $fontRegular;
+    line-height: 1;
+  }
+
+  &__price {
+    color: $c-gray500;
+    font-size: $fontSmall;
+  }
 
   &__image {
     width: 82px;
