@@ -33,14 +33,6 @@
     overflow: hidden;
 
     width: 280px;
-
-    @include mediaMaxWidth {
-      width: 200px;
-    }
-
-    @include mediaMaxWidth($mobileWidth) {
-      width: unset;
-    }
   }
 
   &__banner-image {
