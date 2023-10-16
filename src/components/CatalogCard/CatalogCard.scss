@@ -1,4 +1,46 @@
 @import 'src/styles/_utils.scss';
 
 .catalog-card {
+  width: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: $componentInnerPaddingR $componentInnerPaddingS;
+
+  @include mediaMaxWidth($tabletWidth) {
+    width: 180px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $cardGap;
+
+    align-self: flex-start;
+  }
+
+  &__title {
+    color: $c-dark;
+    font-size: $fontRegular;
+    line-height: 1;
+
+    padding-right: $componentInnerPaddingS;
+  }
+
+  &__price {
+    color: $c-gray500;
+    font-size: $fontSmall;
+  }
+
+  &__image {
+    width: 82px;
+    height: 82px;
+
+    @include mediaMaxWidth($tabletWidth) {
+      width: 64px;
+      height: 64px;
+    }
+  }
 }

@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function Catalog({ title, category, imageUrl }: Props) {
-  const { isLoading, isError, data, error, refetch } = useQuery({
+  const { isLoading, isError, data, error } = useQuery({
     queryKey: [`${category}-products`],
     queryFn: () => getSingleCategory(category),
   });
@@ -37,7 +37,12 @@ export default function Catalog({ title, category, imageUrl }: Props) {
         </div>
         <div className="catalog__cards">
           {data?.map((product) => (
-            <CatalogCard key={product.id} title={product.title} />
+            <CatalogCard
+              key={product.id}
+              title={product.title}
+              img={product.image}
+              price={product.price}
+            />
           ))}
         </div>
       </div>
