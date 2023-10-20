@@ -30,16 +30,9 @@
   &__banner {
     position: relative;
     @extend %center;
+    overflow: hidden;
 
     width: 280px;
-
-    @include mediaMaxWidth {
-      width: 200px;
-    }
-
-    @include mediaMaxWidth($mobileWidth) {
-      width: unset;
-    }
   }
 
   &__banner-image {
@@ -54,5 +47,14 @@
     z-index: 10;
     top: 20%;
     left: $componentInnerPaddingR;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $cardGap;
+
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -92,7 +92,7 @@ export default function SearchBar() {
         // #region Categories Selection
         windowWidth > 734 ? (
           <select
-            onChange={(e) => handleCategoriesChange(e)}
+            onChange={handleCategoriesChange}
             className="SearchBar__select"
           >
             <option key={'allCategories'} value={'all categories'}>
