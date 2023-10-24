@@ -16,9 +16,15 @@
   &__info {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: $cardGap;
 
     align-self: flex-start;
+
+    height: $catalogImageSizeL;
+    @include mediaMaxWidth($tabletWidth) {
+      height: $catalogImageSizeM;
+    }
   }
 
   &__title {
@@ -34,13 +40,18 @@
     font-size: $fontSmall;
   }
 
+  &__image-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   &__image {
     width: 82px;
-    height: 82px;
+    height: $catalogImageSizeL;
 
     @include mediaMaxWidth($tabletWidth) {
       width: 64px;
-      height: 64px;
+      height: $catalogImageSizeM;
     }
   }
 }
