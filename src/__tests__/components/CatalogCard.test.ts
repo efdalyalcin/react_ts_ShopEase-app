@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import CatalogCard from 'src/components/CatalogCard/CatalogCard';
 
 describe('<Catalog Card />', () => {
@@ -29,5 +29,14 @@ describe('<Catalog Card />', () => {
       CatalogCard({ title: 'Title', img: 'invalid', price: '10' })
     );
     expect(container.getElementsByClassName('catalog-card')).toHaveLength(1);
+  });
+
+  it('should render the price element when price is missing', () => {
+    const { container } = render(
+      CatalogCard({ title: 'Title', img: 'image.jpg', price: '' })
+    );
+    expect(
+      container.getElementsByClassName('catalog-card__price')
+    ).toHaveLength(1);
   });
 });
