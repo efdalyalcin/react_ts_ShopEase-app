@@ -7,11 +7,14 @@
     "start": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
+    "@testing-library/react": "^14.0.0",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "jsdom": "^22.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-indiana-drag-scroll": "^2.2.0",
@@ -21,8 +24,11 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@types/jsdom": "^21.1.4",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "@types/testing-library__react": "^10.2.0",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react-swc": "^3.0.0",
@@ -31,6 +37,7 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "sass": "^1.62.1",
     "typescript": "^5.0.2",
-    "vite": "^4.3.2"
+    "vite": "^4.3.2",
+    "vitest": "^0.34.6"
   }
 }

@@ -6,8 +6,10 @@ type Props = {
   price: string;
 };
 
-const makeTwoWordsTitle = (title: string): string => {
+// eslint-disable-next-line react-refresh/only-export-components
+export const makeTwoWordsTitle = (title: string): string => {
   const wordsArr = title.split(' ');
+  if (wordsArr.length === 1) return wordsArr[0];
   return `${wordsArr[0]} ${wordsArr[1]}`;
 };
 
