@@ -18,10 +18,8 @@ describe('getProducts', () => {
       ],
     });
 
-    // Call the getProducts function
+    // Call the getProducts function and see the result is a promise
     const result = getProducts();
-
-    // Assert that the result is a promise
     expect(result).toBeInstanceOf(Promise);
 
     // Assert that the promise resolves to an array of products
