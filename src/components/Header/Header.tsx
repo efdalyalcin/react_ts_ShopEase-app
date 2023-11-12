@@ -1,15 +1,18 @@
 import './Header.scss';
 import SearchBar from '../SearchBar/SearchBar';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
     <header className="header">
       <div className="header__logo">
-        <img
-          className="header__logo-image"
-          src="src/assets/icons/brand_name.png"
-          alt="shopEase brand logo"
-        />
+        <Link to="/">
+          <img
+            className="header__logo-image"
+            src="src/assets/icons/brand_name.png"
+            alt="shopEase brand logo"
+          />
+        </Link>
       </div>
       <div className="header__bar">
         <SearchBar />

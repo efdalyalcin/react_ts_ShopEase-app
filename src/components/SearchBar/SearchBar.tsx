@@ -1,15 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 import './SearchBar.scss';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
 import { getCategories } from 'src/services/getCategories';
 import { useQuery } from 'react-query';
 import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
 import useSelectedCategory from 'src/store/categoryStorage';
+import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function SearchBar() {
+  const { searchQuery, setSearchQuery } = useSearchQuery();
+  const [_searchParams, setSearchParams] = useSearchParams({});
+
   const [isSearchable, setIsSearchable] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
@@ -33,17 +36,17 @@ export default function SearchBar() {
   // #endregion
 
   useEffect(() => {
-    if (searchInput.length > 2) {
+    if (searchQuery.length > 1) {
       setIsSearchable(true);
     } else {
       setIsSearchable(false);
     }
-  }, [searchInput]);
+  }, [searchQuery]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // this prevents the white space in the beginning
     const value = e.target.value.replace(/^\s+/, '');
-    setSearchInput(value);
+    setSearchQuery(value);
   };
 
   const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -62,10 +65,10 @@ export default function SearchBar() {
         e.preventDefault();
         return;
       }
-
+      setSearchParams({ query: searchQuery });
       // otherwise link takes to search page, search is handled in the page itself.
     },
-    [isSearchable]
+    [isSearchable, searchQuery]
   );
 
   if (isError) return <div>{`Error on the server: ${error}`}</div>;
@@ -84,7 +87,7 @@ export default function SearchBar() {
           type="text"
           className="SearchBar__input"
           placeholder="Search"
-          value={searchInput}
+          value={searchQuery}
           onChange={handleInput}
         />
       </div>
