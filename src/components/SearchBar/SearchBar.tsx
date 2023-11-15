@@ -10,7 +10,9 @@ import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQuery();
-  const [_searchParams, setSearchParams] = useSearchParams({});
+  const [searchParams, setSearchParams] = useSearchParams({
+    query: searchQuery,
+  });
 
   const [isSearchable, setIsSearchable] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -62,9 +64,11 @@ export default function SearchBar() {
   const handleSearchButton = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       if (!isSearchable) {
+        // if search button is not active do nothing
         e.preventDefault();
         return;
       }
+
       setSearchParams({ query: searchQuery });
       // otherwise link takes to search page, search is handled in the page itself.
     },
