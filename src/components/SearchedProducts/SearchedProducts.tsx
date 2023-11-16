@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getSingleCategory } from 'src/services/getSingleCategory';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 import { IProduct } from 'src/types/product.type';
+import SearchedCard from '../SearchedCard/SearchedCard';
 
 export default function SearchedProducts() {
   const { selectedCategory } = useSelectedCategory();
@@ -43,7 +44,7 @@ export default function SearchedProducts() {
   return (
     <div>
       {filteredProducts?.map((product) => (
-        <p key={product.id}>{product.title}</p>
+        <SearchedCard key={product.id} product={product} />
       ))}
     </div>
   );

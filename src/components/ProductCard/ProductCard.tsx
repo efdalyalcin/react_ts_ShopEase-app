@@ -50,7 +50,7 @@ const ProductCard = ({ product }: Props) => {
             />
           </div>
           <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
+            <p className="product-card__price">{`€${product.price}`}</p>
             <p className="product-card__title">{product.title}</p>
           </div>
           <OpenCloseButton action={flipCard} state={isFlipped} />
@@ -64,7 +64,7 @@ const ProductCard = ({ product }: Props) => {
           }}
         >
           <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
+            <p className="product-card__price">{`€${product.price}`}</p>
             <AddToCartButton
               amount={amount}
               decreaseAmount={decreaseAmount}

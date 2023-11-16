@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import './SearchBar.scss';
 import { Link, useSearchParams } from 'react-router-dom';
-import cn from 'classnames';
 import { getCategories } from 'src/services/getCategories';
 import { useQuery } from 'react-query';
 import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
@@ -10,7 +9,8 @@ import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQuery();
-  const [searchParams, setSearchParams] = useSearchParams();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
@@ -53,7 +53,10 @@ export default function SearchBar() {
 
   const handleSearchButton = () => {
     setSearchParams({ query: searchQuery });
-    // link takes to search page, search is handled in the page itself.
+  };
+
+  const handleEnterOnSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') setSearchParams({ query: searchQuery });
   };
 
   //#region error and loading handling
@@ -77,6 +80,7 @@ export default function SearchBar() {
           placeholder="Search"
           value={searchQuery}
           onChange={handleInput}
+          onKeyDown={handleEnterOnSearch}
         />
       </div>
       {
