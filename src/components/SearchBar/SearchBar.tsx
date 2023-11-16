@@ -5,14 +5,13 @@ import cn from 'classnames';
 import { getCategories } from 'src/services/getCategories';
 import { useQuery } from 'react-query';
 import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
-import useSelectedCategory from 'src/store/categoryStorage';
+import useSelectedCategory from 'src/store/selectedCategoryStore';
 import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQuery();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [isSearchable, setIsSearchable] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
@@ -35,19 +34,12 @@ export default function SearchBar() {
   }, []);
   // #endregion
 
-  useEffect(() => {
-    if (searchQuery.length > 1) {
-      setIsSearchable(true);
-    } else {
-      setIsSearchable(false);
-    }
-  }, [searchQuery]);
-
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     // this prevents the white space in the beginning
     const value = e.target.value.replace(/^\s+/, '');
     setSearchQuery(value);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
@@ -59,27 +51,21 @@ export default function SearchBar() {
     setSelectedCategory(e.target.value);
   };
 
-  const handleSearchButton = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-      if (!isSearchable) {
-        // if search button is not active do nothing
-        e.preventDefault();
-        return;
-      }
+  const handleSearchButton = () => {
+    setSearchParams({ query: searchQuery });
+    // link takes to search page, search is handled in the page itself.
+  };
 
-      setSearchParams({ query: searchQuery });
-      // otherwise link takes to search page, search is handled in the page itself.
-    },
-    [isSearchable, searchQuery]
-  );
-
+  //#region error and loading handling
   if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="loading">
         <h1 className="loading__text">Loading...</h1>
       </div>
     );
+  }
+  //#endregion
 
   return (
     <div className="SearchBar">
@@ -125,9 +111,7 @@ export default function SearchBar() {
       }
       <Link
         to="/search"
-        className={cn('SearchBar__button', {
-          'SearchBar__button--disabled': !isSearchable,
-        })}
+        className="SearchBar__button"
         onClick={handleSearchButton}
       >
         Search
