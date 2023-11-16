@@ -6,6 +6,8 @@ import useSelectedCategory from 'src/store/selectedCategoryStore';
 import { IProduct } from 'src/types/product.type';
 import SearchedCard from '../SearchedCard/SearchedCard';
 
+import './SearchedProducts.scss';
+
 export default function SearchedProducts() {
   const { selectedCategory } = useSelectedCategory();
   const [searchParams] = useSearchParams();
@@ -42,7 +44,7 @@ export default function SearchedProducts() {
   //#endregion
 
   return (
-    <div>
+    <div className="SearchedProducts">
       {filteredProducts?.map((product) => (
         <SearchedCard key={product.id} product={product} />
       ))}
