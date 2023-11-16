@@ -6,14 +6,12 @@ import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function Header() {
   const { searchQuery, clearSearchQuery } = useSearchQuery();
-  const [_searchParams, setSearchParams] = useSearchParams({
-    query: searchQuery,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // searchParams initial render query
+  // searchParams url change when query changes
   useEffect(() => {
     if (searchQuery) setSearchParams({ query: searchQuery });
-  }, []);
+  }, [searchParams.get('query')]);
 
   return (
     <header className="header">

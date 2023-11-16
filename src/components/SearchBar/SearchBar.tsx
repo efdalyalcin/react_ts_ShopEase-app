@@ -10,9 +10,7 @@ import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQuery();
-  const [searchParams, setSearchParams] = useSearchParams({
-    query: searchQuery,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [isSearchable, setIsSearchable] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
