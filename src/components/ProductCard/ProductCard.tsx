@@ -20,7 +20,6 @@ const ProductCard = ({ product }: Props) => {
 
   const flipCard = () => setIsFlipped(() => !isFlipped);
   const decreaseAmount = () => {
-    console.log('sdkajdklajd kajdslk');
     if (amount >= 1) setAmount(() => amount - 1);
   };
   const increaseAmount = () => {

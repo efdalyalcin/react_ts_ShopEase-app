@@ -24,10 +24,14 @@ export default function SearchedProducts() {
   useEffect(() => {
     const paramQuery = searchParams.get('query');
     if (paramQuery && data) {
-      const filteredProducts = data.filter((product) =>
+      const filteredData = data.filter((product) =>
         product.title.toLowerCase().includes(paramQuery.toLowerCase())
       );
-      setFilteredProducts([...filteredProducts]);
+      setFilteredProducts([...filteredData]);
+    }
+
+    if (!paramQuery && data) {
+      setFilteredProducts([...data]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.get('query'), selectedCategory, data]);
