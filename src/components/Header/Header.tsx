@@ -1,15 +1,28 @@
 import './Header.scss';
 import SearchBar from '../SearchBar/SearchBar';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function Header() {
+  const { searchQuery, clearSearchQuery } = useSearchQuery();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // searchParams url change when query changes
+  useEffect(() => {
+    if (searchQuery) setSearchParams({ query: searchQuery });
+  }, [searchParams.get('query')]);
+
   return (
     <header className="header">
       <div className="header__logo">
-        <img
-          className="header__logo-image"
-          src="src/assets/icons/brand_name.png"
-          alt="shopEase brand logo"
-        />
+        <Link to="/" onClick={clearSearchQuery}>
+          <img
+            className="header__logo-image"
+            src="src/assets/icons/brand_name.png"
+            alt="shopEase brand logo"
+          />
+        </Link>
       </div>
       <div className="header__bar">
         <SearchBar />

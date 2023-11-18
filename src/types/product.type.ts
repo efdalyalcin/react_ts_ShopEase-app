@@ -6,3 +6,8 @@ export interface IProduct {
   description: string;
   image: string;
 }
+
+export interface ICartItem {
+  productId: number;
+  quantity: number;
+}

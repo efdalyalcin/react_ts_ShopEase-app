@@ -10,6 +10,8 @@ type Props = {
 export const makeTwoWordsTitle = (title: string): string => {
   const wordsArr = title.split(' ');
   if (wordsArr.length === 1) return wordsArr[0];
+  if (wordsArr[1].length < 3)
+    return `${wordsArr[0]} ${wordsArr[1]} ${wordsArr[2]}`;
   return `${wordsArr[0]} ${wordsArr[1]}`;
 };
 

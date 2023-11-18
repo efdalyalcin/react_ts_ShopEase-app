@@ -1,0 +1,17 @@
+@import 'src/styles/_utils.scss';
+
+.SearchedProducts {
+  display: flex;
+  flex-direction: column;
+  gap: $searchPageCardGap;
+
+  padding: 16px $pageSidePaddingL;
+
+  @include mediaMaxWidth {
+    padding-inline: $pageSidePaddingM;
+  }
+
+  @include mediaMaxWidth($mobileWidth) {
+    padding-inline: $pageSidePaddingS;
+  }
+}

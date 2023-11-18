@@ -1,0 +1,41 @@
+@import 'src/styles/_utils.scss';
+
+.SearchedCard {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: $cardGap;
+
+  @extend %borderShadow;
+
+  &__image {
+    padding: $searchedCardPadding;
+
+    @include mediaMaxWidth($mobileWidth) {
+      padding: $searchedCardPaddingS;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: $cardGap;
+
+    padding: $searchedCardPadding;
+    padding-left: 0;
+
+    @include mediaMaxWidth($mobileWidth) {
+      padding: $searchedCardPaddingS;
+    }
+  }
+
+  &__title {
+    font-size: $fontRegular;
+    line-height: $lineHeight;
+    font-weight: 600;
+  }
+
+  &__price {
+    font-size: $fontLarge;
+    font-weight: 800;
+  }
+}

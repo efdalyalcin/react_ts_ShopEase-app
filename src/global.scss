@@ -20,3 +20,8 @@ h2 {
     color: $c-dark;
   }
 }
+
+.App {
+  @extend %minMaxWidthPage;
+  @extend %center;
+}

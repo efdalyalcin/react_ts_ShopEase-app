@@ -20,7 +20,6 @@ const ProductCard = ({ product }: Props) => {
 
   const flipCard = () => setIsFlipped(() => !isFlipped);
   const decreaseAmount = () => {
-    console.log('sdkajdklajd kajdslk');
     if (amount >= 1) setAmount(() => amount - 1);
   };
   const increaseAmount = () => {
@@ -50,7 +49,7 @@ const ProductCard = ({ product }: Props) => {
             />
           </div>
           <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
+            <p className="product-card__price">{`€${product.price}`}</p>
             <p className="product-card__title">{product.title}</p>
           </div>
           <OpenCloseButton action={flipCard} state={isFlipped} />
@@ -64,7 +63,7 @@ const ProductCard = ({ product }: Props) => {
           }}
         >
           <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
+            <p className="product-card__price">{`€${product.price}`}</p>
             <AddToCartButton
               amount={amount}
               decreaseAmount={decreaseAmount}

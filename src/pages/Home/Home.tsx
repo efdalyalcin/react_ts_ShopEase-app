@@ -8,9 +8,14 @@ export default function Home() {
     <main className="home-page">
       <Header />
       <Catalog
-        title={'Consumer Electronics and Gadgets'}
-        category={'electronics'}
+        title="Consumer Electronics and Gadgets"
+        category="electronics"
         imageUrl="src/assets/images/electronics.png"
+      />
+      <Catalog
+        title="Men's Clothing"
+        category="men's clothing"
+        imageUrl="src/assets/images/mensClothingCategory.png"
       />
       <Recommended />
     </main>
