@@ -30,11 +30,15 @@ export default function Header() {
       <div className="nav-controls">
         <div className="nav-controls__item">
           <img src="/src/assets/icons/account_circle.svg" alt="Account" />
-          <p className="nav-controls__title">Profile</p>
+          <Link to="/coming-soon" className="nav-controls__title">
+            Profile
+          </Link>
         </div>
         <div className="nav-controls__item">
           <img src="/src/assets/icons/favorite.svg" alt="Orders" />
-          <p className="nav-controls__title">Orders</p>
+          <Link to="/coming-soon" className="nav-controls__title">
+            Orders
+          </Link>
         </div>
         <div className="nav-controls__item">
           <img src="/src/assets/icons/shopping_cart.svg" alt="Cart" />
