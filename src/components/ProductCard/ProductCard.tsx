@@ -1,17 +1,22 @@
 import { IProduct } from 'src/types/product.type';
 import './ProductCard.scss';
 import ProductImage from '../ProductImage/ProductImage';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import OpenCloseButton from '../OpenCloseButton/OpenCloseButton';
+import useCart from 'src/store/cartStore';
+import findProductInCart from 'src/helpers/findProductInCart';
 
 type Props = {
   product: IProduct;
 };
 
 const ProductCard = ({ product }: Props) => {
+  const { productsInCart, addOrRemoveProductItem } = useCart();
   const [isFlipped, setIsFlipped] = useState(false);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number>(
+    findProductInCart(product.id, productsInCart)?.quantity || 0
+  );
   const [dimensions, setDimensions] = useState({
     frontWidth: 220,
     frontHeight: 0,
@@ -19,12 +24,26 @@ const ProductCard = ({ product }: Props) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const flipCard = () => setIsFlipped(() => !isFlipped);
-  const decreaseAmount = () => {
-    if (amount >= 1) setAmount(() => amount - 1);
-  };
-  const increaseAmount = () => {
-    if (amount < 20) setAmount(() => amount + 1);
-  };
+
+  const decreaseAmount = useCallback(() => {
+    if (amount >= 1) {
+      setAmount((prevAmount) => {
+        const newAmount = prevAmount - 1;
+        addOrRemoveProductItem(product.id, newAmount);
+        return newAmount;
+      });
+    }
+  }, [amount]);
+
+  const increaseAmount = useCallback(() => {
+    if (amount < 20) {
+      setAmount((prevAmount) => {
+        const newAmount = prevAmount + 1;
+        addOrRemoveProductItem(product.id, newAmount);
+        return newAmount;
+      });
+    }
+  }, [amount]);
 
   useEffect(() => {
     if (cardRef.current) {
