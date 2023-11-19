@@ -1,49 +1,46 @@
 import { IProduct } from 'src/types/product.type';
 import './ProductCard.scss';
 import ProductImage from '../ProductImage/ProductImage';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import OpenCloseButton from '../OpenCloseButton/OpenCloseButton';
 import useCart from 'src/store/cartStore';
 import findProductInCart from 'src/helpers/findProductInCart';
+import useItemAmount from 'src/hooks/useItemAmount';
 
 type Props = {
   product: IProduct;
 };
 
 const ProductCard = ({ product }: Props) => {
-  const { productsInCart, addOrRemoveProductItem } = useCart();
+  const { productsInCart } = useCart();
   const [isFlipped, setIsFlipped] = useState(false);
   const [amount, setAmount] = useState<number>(
     findProductInCart(product.id, productsInCart)?.quantity || 0
   );
+
+  // decrease & increase from custom hook
+  const decreaseAmount = useItemAmount({
+    product,
+    amount,
+    setAmount,
+    type: 'dec',
+  });
+  const increaseAmount = useItemAmount({
+    product,
+    amount,
+    setAmount,
+    type: 'inc',
+  });
+  const flipCard = () => setIsFlipped(() => !isFlipped);
+
+  //#region about card dimensions
   const [dimensions, setDimensions] = useState({
     frontWidth: 220,
     frontHeight: 0,
   });
   const cardRef = useRef<HTMLDivElement>(null);
-
-  const flipCard = () => setIsFlipped(() => !isFlipped);
-
-  const decreaseAmount = useCallback(() => {
-    if (amount >= 1) {
-      setAmount((prevAmount) => {
-        const newAmount = prevAmount - 1;
-        addOrRemoveProductItem(product.id, newAmount);
-        return newAmount;
-      });
-    }
-  }, [amount]);
-
-  const increaseAmount = useCallback(() => {
-    if (amount < 20) {
-      setAmount((prevAmount) => {
-        const newAmount = prevAmount + 1;
-        addOrRemoveProductItem(product.id, newAmount);
-        return newAmount;
-      });
-    }
-  }, [amount]);
+  //#endregion
 
   useEffect(() => {
     if (cardRef.current) {

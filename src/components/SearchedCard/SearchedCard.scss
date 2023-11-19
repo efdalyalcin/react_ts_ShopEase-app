@@ -18,6 +18,7 @@
   &__details {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: $cardGap;
 
     padding: $searchedCardPadding;

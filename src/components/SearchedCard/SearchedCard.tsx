@@ -1,6 +1,11 @@
 import './SearchedCard.scss';
 import { IProduct } from 'src/types/product.type';
 import ProductImage from '../ProductImage/ProductImage';
+import { useState } from 'react';
+import findProductInCart from 'src/helpers/findProductInCart';
+import useItemAmount from 'src/hooks/useItemAmount';
+import useCart from 'src/store/cartStore';
+import AddToCartButton from '../AddToCartButton/AddToCartButton';
 
 type Props = {
   product: IProduct;
@@ -14,6 +19,24 @@ const makeTwoDigitPricing = (price: string | number): string => {
 };
 
 export default function SearchedCard({ product }: Props) {
+  const { productsInCart } = useCart();
+  const [amount, setAmount] = useState<number>(
+    findProductInCart(product.id, productsInCart)?.quantity || 0
+  );
+
+  // decrease & increase from custom hook
+  const decreaseAmount = useItemAmount({
+    product,
+    amount,
+    setAmount,
+    type: 'dec',
+  });
+  const increaseAmount = useItemAmount({
+    product,
+    amount,
+    setAmount,
+    type: 'inc',
+  });
   const digitedPricing = makeTwoDigitPricing(product.price);
 
   return (
@@ -30,6 +53,11 @@ export default function SearchedCard({ product }: Props) {
         <h4 className="SearchedCard__title">{product.title}</h4>
         <p className="SearchedCard__price">{`€ ${digitedPricing}`}</p>
         <p className="SearchedCard__desc">{product.description}</p>
+        <AddToCartButton
+          amount={amount}
+          decreaseAmount={decreaseAmount}
+          increaseAmount={increaseAmount}
+        />
       </div>
     </div>
   );
