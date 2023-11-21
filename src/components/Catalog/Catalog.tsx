@@ -24,6 +24,8 @@ export default function Catalog({ title, category, imageUrl }: Props) {
     );
   }
 
+  console.log(data);
+
   return (
     <section className="section catalog-section">
       <div className="catalog">

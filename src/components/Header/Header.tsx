@@ -11,6 +11,7 @@ export default function Header() {
   // searchParams url change when query changes
   useEffect(() => {
     if (searchQuery) setSearchParams({ query: searchQuery });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.get('query')]);
 
   return (
@@ -28,18 +29,18 @@ export default function Header() {
         <SearchBar />
       </div>
       <div className="nav-controls">
-        <div className="nav-controls__item">
+        <Link to="/coming-soon" className="nav-controls__item">
           <img src="/src/assets/icons/account_circle.svg" alt="Account" />
           <p className="nav-controls__title">Profile</p>
-        </div>
-        <div className="nav-controls__item">
+        </Link>
+        <Link to="/coming-soon" className="nav-controls__item">
           <img src="/src/assets/icons/favorite.svg" alt="Orders" />
           <p className="nav-controls__title">Orders</p>
-        </div>
-        <div className="nav-controls__item">
+        </Link>
+        <Link to="/coming-soon" className="nav-controls__item">
           <img src="/src/assets/icons/shopping_cart.svg" alt="Cart" />
           <p className="nav-controls__title">My&nbsp;Cart</p>
-        </div>
+        </Link>
       </div>
     </header>
   );
