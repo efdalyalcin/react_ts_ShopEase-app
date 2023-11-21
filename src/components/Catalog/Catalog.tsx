@@ -24,8 +24,6 @@ export default function Catalog({ title, category, imageUrl }: Props) {
     );
   }
 
-  console.log(data);
-
   return (
     <section className="section catalog-section">
       <div className="catalog">
@@ -44,6 +42,7 @@ export default function Catalog({ title, category, imageUrl }: Props) {
               title={product.title}
               img={product.image}
               price={product.price}
+              category={product.category}
             />
           ))}
         </div>

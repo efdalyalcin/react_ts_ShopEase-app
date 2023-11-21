@@ -3,10 +3,12 @@ import SearchBar from '../SearchBar/SearchBar';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import useSearchQuery from 'src/store/searchQueryStore';
+import useSelectedCategory from 'src/store/selectedCategoryStore';
 
 export default function Header() {
   const { searchQuery, clearSearchQuery } = useSearchQuery();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { setSelectedCategory } = useSelectedCategory();
 
   // searchParams url change when query changes
   useEffect(() => {
@@ -14,10 +16,15 @@ export default function Header() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.get('query')]);
 
+  const handleHomeIconClick = () => {
+    clearSearchQuery();
+    setSelectedCategory('allCategories');
+  };
+
   return (
     <header className="header">
       <div className="header__logo">
-        <Link to="/" onClick={clearSearchQuery}>
+        <Link to="/" onClick={handleHomeIconClick}>
           <img
             className="header__logo-image"
             src="src/assets/icons/brand_name.png"
