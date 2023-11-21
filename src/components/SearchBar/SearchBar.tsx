@@ -89,6 +89,7 @@ export default function SearchBar() {
           <select
             onChange={handleCategoriesChange}
             className="SearchBar__select"
+            defaultValue={selectedCategory}
           >
             <option key={'allCategories'} value={'all categories'}>
               ALL CATEGORIES

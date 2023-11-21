@@ -6,7 +6,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import './Recommended.scss';
 
 export default function Recommended() {
-  const { isLoading, isError, data, error, refetch } = useQuery({
+  const { isLoading, isError, data, error } = useQuery({
     queryKey: ['products'],
     queryFn: getProducts,
   });
