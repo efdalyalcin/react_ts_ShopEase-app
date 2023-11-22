@@ -42,6 +42,7 @@ export default function Catalog({ title, category, imageUrl }: Props) {
               title={product.title}
               img={product.image}
               price={product.price}
+              category={product.category}
             />
           ))}
         </div>

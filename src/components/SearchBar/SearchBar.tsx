@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
 import './SearchBar.scss';
-import { Link } from 'react-router-dom';
-import cn from 'classnames';
+import { Link, useSearchParams } from 'react-router-dom';
 import { getCategories } from 'src/services/getCategories';
 import { useQuery } from 'react-query';
 import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
-import useSelectedCategory from 'src/store/categoryStorage';
+import useSelectedCategory from 'src/store/selectedCategoryStore';
+import useSearchQuery from 'src/store/searchQueryStore';
 
 export default function SearchBar() {
-  const [isSearchable, setIsSearchable] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
+  const { searchQuery, setSearchQuery } = useSearchQuery();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
+
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
@@ -32,19 +34,12 @@ export default function SearchBar() {
   }, []);
   // #endregion
 
-  useEffect(() => {
-    if (searchInput.length > 2) {
-      setIsSearchable(true);
-    } else {
-      setIsSearchable(false);
-    }
-  }, [searchInput]);
-
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     // this prevents the white space in the beginning
     const value = e.target.value.replace(/^\s+/, '');
-    setSearchInput(value);
-  };
+    setSearchQuery(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCategory(e.target.value);
@@ -56,25 +51,24 @@ export default function SearchBar() {
     setSelectedCategory(e.target.value);
   };
 
-  const handleSearchButton = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-      if (!isSearchable) {
-        e.preventDefault();
-        return;
-      }
+  const handleSearchButton = () => {
+    setSearchParams({ query: searchQuery });
+  };
 
-      // otherwise link takes to search page, search is handled in the page itself.
-    },
-    [isSearchable]
-  );
+  const handleEnterOnSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') setSearchParams({ query: searchQuery });
+  };
 
+  //#region error and loading handling
   if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="loading">
         <h1 className="loading__text">Loading...</h1>
       </div>
     );
+  }
+  //#endregion
 
   return (
     <div className="SearchBar">
@@ -84,8 +78,9 @@ export default function SearchBar() {
           type="text"
           className="SearchBar__input"
           placeholder="Search"
-          value={searchInput}
+          value={searchQuery}
           onChange={handleInput}
+          onKeyDown={handleEnterOnSearch}
         />
       </div>
       {
@@ -94,6 +89,7 @@ export default function SearchBar() {
           <select
             onChange={handleCategoriesChange}
             className="SearchBar__select"
+            defaultValue={selectedCategory}
           >
             <option key={'allCategories'} value={'all categories'}>
               ALL CATEGORIES
@@ -120,9 +116,7 @@ export default function SearchBar() {
       }
       <Link
         to="/search"
-        className={cn('SearchBar__button', {
-          'SearchBar__button--disabled': !isSearchable,
-        })}
+        className="SearchBar__button"
         onClick={handleSearchButton}
       >
         Search

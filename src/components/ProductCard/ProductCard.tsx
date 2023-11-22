@@ -4,28 +4,43 @@ import ProductImage from '../ProductImage/ProductImage';
 import { useEffect, useRef, useState } from 'react';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
 import OpenCloseButton from '../OpenCloseButton/OpenCloseButton';
+import useCart from 'src/store/cartStore';
+import findProductInCart from 'src/helpers/findProductInCart';
+import useItemAmount from 'src/hooks/useItemAmount';
 
 type Props = {
   product: IProduct;
 };
 
 const ProductCard = ({ product }: Props) => {
+  const { productsInCart } = useCart();
   const [isFlipped, setIsFlipped] = useState(false);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number>(
+    findProductInCart(product.id, productsInCart)?.quantity || 0
+  );
+
+  // decrease & increase from custom hook
+  const decreaseAmount = useItemAmount({
+    product,
+    amount,
+    setAmount,
+    type: 'dec',
+  });
+  const increaseAmount = useItemAmount({
+    product,
+    amount,
+    setAmount,
+    type: 'inc',
+  });
+  const flipCard = () => setIsFlipped(() => !isFlipped);
+
+  //#region about card dimensions
   const [dimensions, setDimensions] = useState({
     frontWidth: 220,
     frontHeight: 0,
   });
   const cardRef = useRef<HTMLDivElement>(null);
-
-  const flipCard = () => setIsFlipped(() => !isFlipped);
-  const decreaseAmount = () => {
-    console.log('sdkajdklajd kajdslk');
-    if (amount >= 1) setAmount(() => amount - 1);
-  };
-  const increaseAmount = () => {
-    if (amount < 20) setAmount(() => amount + 1);
-  };
+  //#endregion
 
   useEffect(() => {
     if (cardRef.current) {
@@ -50,7 +65,7 @@ const ProductCard = ({ product }: Props) => {
             />
           </div>
           <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
+            <p className="product-card__price">{`€${product.price}`}</p>
             <p className="product-card__title">{product.title}</p>
           </div>
           <OpenCloseButton action={flipCard} state={isFlipped} />
@@ -64,7 +79,7 @@ const ProductCard = ({ product }: Props) => {
           }}
         >
           <div className="product-card__container">
-            <p className="product-card__price">{`$${product.price}`}</p>
+            <p className="product-card__price">{`€${product.price}`}</p>
             <AddToCartButton
               amount={amount}
               decreaseAmount={decreaseAmount}
