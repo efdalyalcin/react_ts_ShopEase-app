@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 import useSearchQuery from 'src/store/searchQueryStore';
+import throttle from 'src/helpers/throttle';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQuery();
@@ -26,10 +27,11 @@ export default function SearchBar() {
       setWindowWidth(window.innerWidth);
     };
 
-    window.addEventListener('resize', handleWidthResize);
+    const throttledHandler = throttle(handleWidthResize, 300);
+    window.addEventListener('resize', throttledHandler);
 
     return () => {
-      window.removeEventListener('resize', handleWidthResize);
+      window.removeEventListener('resize', throttledHandler);
     };
   }, []);
   // #endregion

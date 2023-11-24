@@ -8,7 +8,7 @@ import useSelectedCategory from 'src/store/selectedCategoryStore';
 export default function Header() {
   const { searchQuery, clearSearchQuery } = useSearchQuery();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { setSelectedCategory } = useSelectedCategory();
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory();
 
   // searchParams url change when query changes
   useEffect(() => {
@@ -18,7 +18,9 @@ export default function Header() {
 
   const handleHomeIconClick = () => {
     clearSearchQuery();
-    setSelectedCategory('allCategories');
+    if (selectedCategory !== 'allCategories') {
+      setSelectedCategory('allCategories');
+    }
   };
 
   return (
