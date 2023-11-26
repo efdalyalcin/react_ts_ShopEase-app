@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from './urls';
+import { BASE_URL } from '../constants/urls';
 import { IProduct } from 'src/types/product.type';
 
 export const getProducts = () => {

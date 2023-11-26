@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { BASE_URL } from './urls';
+import { BASE_URL } from '../constants/urls';
 import { IProduct } from 'src/types/product.type';
 import { getProducts } from './getProducts';
+import { initialCategoryKey } from 'src/constants/categories';
 
 export const getSingleCategory = (category: string) => {
-  if (category === 'all categories') {
+  if (category === initialCategoryKey) {
     return getProducts();
   }
 
