@@ -55,14 +55,10 @@ export default function SearchBar() {
 
   const handleSearchButton = () => {
     setSearchParams({ query: searchQuery });
-    window.location.href = `/search?query=${searchQuery}`;
   };
 
   const handleEnterOnSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      setSearchParams({ query: searchQuery });
-      window.location.href = `/search?query=${searchQuery}`;
-    }
+    if (e.key === 'Enter') setSearchParams({ query: searchQuery });
   };
 
   //#region error and loading handling
