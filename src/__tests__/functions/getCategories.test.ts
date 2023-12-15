@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getCategories } from 'src/services/getCategories';
-import { BASE_URL } from 'src/services/urls';
+import { BASE_URL } from 'src/constants/urls';
 import { describe, expect, it, vi } from 'vitest';
 
 describe('getCategories', () => {
