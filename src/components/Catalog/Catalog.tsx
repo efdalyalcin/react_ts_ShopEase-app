@@ -2,6 +2,8 @@ import { useQuery } from 'react-query';
 import CatalogCard from '../CatalogCard/CatalogCard';
 import './Catalog.scss';
 import { getSingleCategory } from 'src/services/getSingleCategory';
+import Loading from '../Loading/Loading';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 type Props = {
   title: string;
@@ -15,14 +17,8 @@ export default function Catalog({ title, category, imageUrl }: Props) {
     queryFn: () => getSingleCategory(category),
   });
 
-  if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading) {
-    return (
-      <div className="loading">
-        <h1 className="loading__text">Loading...</h1>
-      </div>
-    );
-  }
+  if (isError) return <ErrorPage error={error} />;
+  if (isLoading) return <Loading />;
 
   return (
     <section className="section catalog-section">

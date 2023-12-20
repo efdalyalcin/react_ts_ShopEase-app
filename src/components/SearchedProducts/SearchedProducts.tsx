@@ -7,6 +7,8 @@ import { IProduct } from 'src/types/product.type';
 import SearchedCard from '../SearchedCard/SearchedCard';
 
 import './SearchedProducts.scss';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import Loading from '../Loading/Loading';
 
 export default function SearchedProducts() {
   const { selectedCategory } = useSelectedCategory();
@@ -37,14 +39,8 @@ export default function SearchedProducts() {
   }, [searchParams.get('query'), selectedCategory, data]);
 
   //#region error and loading handling
-  if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading) {
-    return (
-      <div className="loading">
-        <h1 className="loading__text">Loading...</h1>
-      </div>
-    );
-  }
+  if (isError) return <ErrorPage error={error} />;
+  if (isLoading) return <Loading />;
   //#endregion
 
   return (

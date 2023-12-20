@@ -4,6 +4,8 @@ import { IProduct } from 'src/types/product.type';
 import ProductCard from '../ProductCard/ProductCard';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import './Recommended.scss';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import Loading from '../Loading/Loading';
 
 export default function Recommended() {
   const { isLoading, isError, data, error } = useQuery({
@@ -11,13 +13,8 @@ export default function Recommended() {
     queryFn: getProducts,
   });
 
-  if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading)
-    return (
-      <div className="loading">
-        <h1 className="loading__text">Loading...</h1>
-      </div>
-    );
+  if (isError) return <ErrorPage error={error} />;
+  if (isLoading) return <Loading />;
 
   return (
     <section className="recommended">
