@@ -7,8 +7,8 @@ import { IProduct } from 'src/types/product.type';
 import SearchedCard from '../SearchedCard/SearchedCard';
 
 import './SearchedProducts.scss';
-import ErrorPage from '../ErrorPage/ErrorPage';
-import Loading from '../Loading/Loading';
+import ErrorPage from 'src/components/ErrorPage/ErrorPage';
+import Loading from 'src/components/Loading/Loading';
 
 export default function SearchedProducts() {
   const { selectedCategory } = useSelectedCategory();

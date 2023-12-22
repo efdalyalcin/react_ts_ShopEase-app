@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
-import CatalogCard from '../CatalogCard/CatalogCard';
+import CatalogCard from 'src/components/CatalogCard/CatalogCard';
 import './Catalog.scss';
 import { getSingleCategory } from 'src/services/getSingleCategory';
-import Loading from '../Loading/Loading';
-import ErrorPage from '../ErrorPage/ErrorPage';
+import Loading from 'src/components/Loading/Loading';
+import ErrorPage from 'src/components/ErrorPage/ErrorPage';
 
 type Props = {
   title: string;

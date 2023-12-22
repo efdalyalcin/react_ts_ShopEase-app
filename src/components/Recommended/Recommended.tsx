@@ -4,8 +4,8 @@ import { IProduct } from 'src/types/product.type';
 import ProductCard from '../ProductCard/ProductCard';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import './Recommended.scss';
-import ErrorPage from '../ErrorPage/ErrorPage';
-import Loading from '../Loading/Loading';
+import ErrorPage from 'src/components/ErrorPage/ErrorPage';
+import Loading from 'src/components/Loading/Loading';
 
 export default function Recommended() {
   const { isLoading, isError, data, error } = useQuery({
