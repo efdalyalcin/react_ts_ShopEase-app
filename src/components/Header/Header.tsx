@@ -48,7 +48,7 @@ export default function Header() {
           <img src="/src/assets/icons/favorite.svg" alt="Orders" />
           <p className="nav-controls__title">Orders</p>
         </Link>
-        <Link to="/coming-soon" className="nav-controls__item">
+        <Link to="/cart" className="nav-controls__item">
           {productsInCart.length ? (
             <img src="/src/assets/icons/shopping_cart_full.svg" alt="Cart" />
           ) : (

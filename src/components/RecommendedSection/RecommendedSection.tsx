@@ -3,7 +3,7 @@ import { getProducts } from 'src/services/getProducts';
 import { IProduct } from 'src/types/product.type';
 import ProductCard from '../ProductCard/ProductCard';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import './Recommended.scss';
+import './RecommendedSection.scss';
 import ErrorPage from 'src/components/ErrorPage/ErrorPage';
 import Loading from 'src/components/Loading/Loading';
 
@@ -17,9 +17,9 @@ export default function Recommended() {
   if (isLoading) return <Loading />;
 
   return (
-    <section className="recommended">
-      <h2 className="recommended__text">Recommended items</h2>
-      <ScrollContainer horizontal={false} className="recommended__container">
+    <section className="Recommended">
+      <h2 className="Recommended__text">Recommended items</h2>
+      <ScrollContainer horizontal={false} className="Recommended__container">
         {data?.map((product: IProduct) => {
           return <ProductCard product={product} key={product.id} />;
         })}

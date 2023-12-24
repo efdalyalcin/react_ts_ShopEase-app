@@ -99,7 +99,7 @@ export default function SearchBar() {
             defaultValue={selectedCategory}
           >
             <option key={initialCategoryKey} value={initialCategoryValue}>
-              ALL CATEGORIES
+              {initialCategoryValue.toUpperCase()}
             </option>
             {data?.map((category, i) => {
               return (
