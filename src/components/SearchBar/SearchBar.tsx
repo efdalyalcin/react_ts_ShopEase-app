@@ -52,12 +52,10 @@ export default function SearchBar() {
     [setSearchQuery]
   );
 
-  const handleCategoriesChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCategory(e.target.value);
-  };
-
-  const handleCategoriesByButtons = (
-    e: React.ChangeEvent<HTMLButtonElement>
+  const handleCategoriesChange = (
+    e:
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLButtonElement>
   ) => {
     setSelectedCategory(e.target.value);
   };
@@ -115,9 +113,8 @@ export default function SearchBar() {
           <HorizontalDraggableButtons
             data={data}
             additionalFirstButton={initialCategoryValue}
-            additionalLastButton=""
             gridArea="2 / 1 / 2 / -1"
-            handleClick={handleCategoriesByButtons}
+            handleClick={handleCategoriesChange}
             selected={selectedCategory}
           />
         )

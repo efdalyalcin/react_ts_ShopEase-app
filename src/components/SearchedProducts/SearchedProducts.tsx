@@ -14,7 +14,7 @@ export default function SearchedProducts() {
   const { selectedCategory } = useSelectedCategory();
   const [searchParams] = useSearchParams();
 
-  const { isLoading, isError, data, error } = useQuery({
+  const { isLoading, isError, data, error, refetch } = useQuery({
     queryKey: [`${selectedCategory}-products`],
     queryFn: () => getSingleCategory(selectedCategory),
   });
@@ -25,6 +25,7 @@ export default function SearchedProducts() {
 
   useEffect(() => {
     const paramQuery = searchParams.get('query');
+
     if (paramQuery && data) {
       const filteredData = data.filter((product) =>
         product.title.toLowerCase().includes(paramQuery.toLowerCase())
@@ -34,6 +35,10 @@ export default function SearchedProducts() {
 
     if (!paramQuery && data) {
       setFilteredProducts([...data]);
+    }
+
+    if (!paramQuery && !data?.length) {
+      refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.get('query'), selectedCategory, data]);
