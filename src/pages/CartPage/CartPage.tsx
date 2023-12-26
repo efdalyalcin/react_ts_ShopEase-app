@@ -7,9 +7,10 @@ export default function CartPage() {
   const { productsInCart } = useCart();
 
   return (
-    <main>
+    <main className="CartPage">
       <Header />
-      <div>
+      {productsInCart.length ? null : <div>There is nothing in your cart!</div>}
+      <div className="CartPage__products">
         {productsInCart.map((product) => (
           <CartCard key={product.productId} cartItem={product} />
         ))}

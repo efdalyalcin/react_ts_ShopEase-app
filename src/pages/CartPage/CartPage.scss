@@ -1,1 +1,5 @@
 @import 'src/styles/_utils.scss';
+
+.CartPage {
+  @extend %componentPadding;
+}

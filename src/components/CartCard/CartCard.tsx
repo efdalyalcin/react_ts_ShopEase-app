@@ -1,9 +1,9 @@
 import { ICartItem } from 'src/types/product.type';
 import './CartCard.scss';
 import { useProductsData } from 'src/hooks/useProductsData';
-import findProductInCart from 'src/helpers/findProductInCart';
 import { useMemo } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
+import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
 
 type Props = {
   cartItem: ICartItem;
@@ -19,6 +19,8 @@ export default function CartCard({ cartItem }: Props) {
     [data, productId]
   );
 
+  const digittedPricing = makeTwoDigitPricing(productItem?.price);
+
   if (!productItem) return null;
 
   return (
@@ -26,9 +28,16 @@ export default function CartCard({ cartItem }: Props) {
       <ProductImage
         img={productItem.image}
         alt={productItem.title}
-        height="40px"
-        width="40px"
+        height="80px"
+        width="80px"
       />
+      <div className="CartCard__info">
+        <p className="CartCard__title">{productItem.title}</p>
+        <p className="CartCard__description">{productItem.description}</p>
+      </div>
+      <div>
+        <p>{`€ ${digittedPricing}`}</p>
+      </div>
     </div>
   );
 }

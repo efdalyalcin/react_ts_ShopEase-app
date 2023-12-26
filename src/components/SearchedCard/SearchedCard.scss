@@ -8,10 +8,10 @@
   @extend %borderShadow;
 
   &__image {
-    padding: $searchedCardPadding;
+    padding: $cardPadding;
 
     @include mediaMaxWidth($mobileWidth) {
-      padding: $searchedCardPaddingS;
+      padding: $cardPaddingS;
     }
   }
 
@@ -21,11 +21,11 @@
     justify-content: space-between;
     gap: $cardGap;
 
-    padding: $searchedCardPadding;
+    padding: $cardPadding;
     padding-left: 0;
 
     @include mediaMaxWidth($mobileWidth) {
-      padding: $searchedCardPaddingS;
+      padding: $cardPaddingS;
     }
   }
 
