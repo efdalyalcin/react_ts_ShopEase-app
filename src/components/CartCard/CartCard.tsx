@@ -4,13 +4,17 @@ import { useProductsData } from 'src/hooks/useProductsData';
 import { useMemo } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
 import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
+import useCart from 'src/store/cartStore';
 
 type Props = {
   cartItem: ICartItem;
 };
 
+const quantityArray = [...Array(21).keys()];
+
 export default function CartCard({ cartItem }: Props) {
   const { productId, quantity } = cartItem;
+  const { addOrRemoveProductItem } = useCart();
 
   // for this point the data is already fetched and cached
   const { data } = useProductsData();
@@ -20,6 +24,10 @@ export default function CartCard({ cartItem }: Props) {
   );
 
   const digittedPricing = makeTwoDigitPricing(productItem?.price);
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    addOrRemoveProductItem(productId, Number(e.target.value));
+  };
 
   if (!productItem) return null;
 
@@ -35,8 +43,20 @@ export default function CartCard({ cartItem }: Props) {
         <p className="CartCard__title">{productItem.title}</p>
         <p className="CartCard__description">{productItem.description}</p>
       </div>
-      <div>
-        <p>{`€ ${digittedPricing}`}</p>
+      <div className="CartCard__price-info">
+        <p className="CartCard__price">{`€ ${digittedPricing}`}</p>
+        <div className="CartCard__quantity">
+          <p>Qty: </p>
+          <select
+            defaultValue={quantity}
+            onChange={handleQuantityChange}
+            className="CartCard__select"
+          >
+            {quantityArray.map((value) => (
+              <option key={value}>{value}</option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );

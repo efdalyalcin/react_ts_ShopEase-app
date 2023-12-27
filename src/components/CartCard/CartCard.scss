@@ -31,4 +31,46 @@
       display: none;
     }
   }
+
+  &__price-info {
+    display: flex;
+    flex-direction: column;
+    gap: $cardGap;
+    align-items: center;
+  }
+
+  &__price {
+    white-space: nowrap;
+  }
+
+  &__quantity {
+    display: flex;
+    gap: $cardGap;
+  }
+
+  &__select {
+    padding: 0 8px;
+    flex-grow: 1;
+
+    font-size: $fontRegular;
+    line-height: $lineHeight;
+
+    border: 1px solid $c-gray400;
+    border-radius: 4px;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $c-primary;
+    }
+
+    &::placeholder {
+      color: $c-gray400;
+    }
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      max-width: 160px;
+      font-size: $fontSmall;
+      line-height: 20px;
+    }
+  }
 }
