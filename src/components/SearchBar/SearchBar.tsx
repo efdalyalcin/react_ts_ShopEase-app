@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import './SearchBar.scss';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { getCategories } from 'src/services/getCategories';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import HorizontalDraggableButtons from 'src/components/HorizontalDraggableButtons/HorizontalDraggableButtons';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 import useSearchQuery from 'src/store/searchQueryStore';

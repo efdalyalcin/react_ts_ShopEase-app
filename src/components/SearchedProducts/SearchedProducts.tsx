@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
 import { getSingleCategory } from 'src/services/getSingleCategory';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 import { IProduct } from 'src/types/product.type';
 import SearchedCard from '../SearchedCard/SearchedCard';
+import { useQuery } from '@tanstack/react-query';
 
 import './SearchedProducts.scss';
 import ErrorPage from 'src/components/ErrorPage/ErrorPage';

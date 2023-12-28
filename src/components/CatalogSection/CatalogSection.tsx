@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import CatalogCard from 'src/components/CatalogCard/CatalogCard';
 import './CatalogSection.scss';
 import { getSingleCategory } from 'src/services/getSingleCategory';
@@ -12,13 +12,13 @@ type Props = {
 };
 
 export default function CatalogSection({ title, category, imageUrl }: Props) {
-  const { isLoading, isError, data, error } = useQuery({
+  const { isPending, isError, data, error } = useQuery({
     queryKey: [`${category}-products`],
     queryFn: () => getSingleCategory(category),
   });
 
   if (isError) return <ErrorPage error={error} />;
-  if (isLoading) return <Loading />;
+  if (isPending) return <Loading />;
 
   return (
     <section className="section Catalog-section">

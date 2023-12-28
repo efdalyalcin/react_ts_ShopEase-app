@@ -10,15 +10,20 @@ export default function CartPage() {
   return (
     <main className="CartPage">
       <Header />
-      {productsInCart.length ? null : <div>There is nothing in your cart!</div>}
-      <section className="CartPage__section">
-        <div className="CartPage__products">
-          {productsInCart.map((product) => (
-            <CartCard key={product.productId} cartItem={product} />
-          ))}
+      {!productsInCart.length ? (
+        <div style={{ textAlign: 'center' }}>
+          There is nothing in your cart!
         </div>
-        <CheckoutAndPayment />
-      </section>
+      ) : (
+        <section className="CartPage__section">
+          <div className="CartPage__products">
+            {productsInCart.map((cartItem) => (
+              <CartCard key={cartItem.productId} cartItem={cartItem} />
+            ))}
+          </div>
+          <CheckoutAndPayment />
+        </section>
+      )}
     </main>
   );
 }

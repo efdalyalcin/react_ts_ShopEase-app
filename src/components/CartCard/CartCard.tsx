@@ -1,9 +1,9 @@
 import './CartCard.scss';
+import { useQuery } from '@tanstack/react-query';
 import { ICartItem } from 'src/types/product.type';
 import ProductImage from '../ProductImage/ProductImage';
 import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
 import useCart from 'src/store/cartStore';
-import { useQuery } from 'react-query';
 import { getProductById } from 'src/services/getProductById';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import Loading from '../Loading/Loading';
