@@ -22,6 +22,10 @@
 
   &__title {
     font-weight: 700;
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      font-size: $fontSmall;
+    }
   }
 
   &__description {
@@ -41,11 +45,19 @@
 
   &__price {
     white-space: nowrap;
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      font-size: $fontSmall;
+    }
   }
 
   &__quantity {
     display: flex;
     gap: $cardGap;
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      font-size: $fontSmall;
+    }
   }
 
   &__select {

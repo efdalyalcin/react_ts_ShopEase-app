@@ -1,5 +1,17 @@
 @import 'src/styles/_utils.scss';
 
 .CartPage {
-  @extend %componentPadding;
+  &__section {
+    @extend %componentPadding;
+
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: $gapBetweenCards;
+  }
+
+  &__products {
+    display: flex;
+    flex-direction: column;
+    gap: $gapBetweenCards;
+  }
 }

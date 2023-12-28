@@ -1,10 +1,12 @@
-import { ICartItem } from 'src/types/product.type';
 import './CartCard.scss';
-import { useProductsData } from 'src/hooks/useProductsData';
-import { useMemo } from 'react';
+import { ICartItem } from 'src/types/product.type';
 import ProductImage from '../ProductImage/ProductImage';
 import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
 import useCart from 'src/store/cartStore';
+import { useQuery } from 'react-query';
+import { getProductById } from 'src/services/getProductById';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import Loading from '../Loading/Loading';
 
 type Props = {
   cartItem: ICartItem;
@@ -16,32 +18,33 @@ export default function CartCard({ cartItem }: Props) {
   const { productId, quantity } = cartItem;
   const { addOrRemoveProductItem } = useCart();
 
-  // for this point the data is already fetched and cached
-  const { data } = useProductsData();
-  const productItem = useMemo(
-    () => data?.find((product) => product.id === productId),
-    [data, productId]
-  );
+  const { isError, isLoading, error, data } = useQuery({
+    queryKey: [`product-${productId}`],
+    queryFn: () => getProductById(productId),
+  });
 
-  const digittedPricing = makeTwoDigitPricing(productItem?.price);
+  if (isError) return <ErrorPage error={error} />;
+  if (isLoading) return <Loading />;
+
+  const digittedPricing = makeTwoDigitPricing(data?.price);
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     addOrRemoveProductItem(productId, Number(e.target.value));
   };
 
-  if (!productItem) return null;
+  if (!data) return null;
 
   return (
     <div className="CartCard">
       <ProductImage
-        img={productItem.image}
-        alt={productItem.title}
+        img={data.image}
+        alt={data.title}
         height="80px"
         width="80px"
       />
       <div className="CartCard__info">
-        <p className="CartCard__title">{productItem.title}</p>
-        <p className="CartCard__description">{productItem.description}</p>
+        <p className="CartCard__title">{data.title}</p>
+        <p className="CartCard__description">{data.description}</p>
       </div>
       <div className="CartCard__price-info">
         <p className="CartCard__price">{`€ ${digittedPricing}`}</p>
