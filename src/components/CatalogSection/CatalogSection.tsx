@@ -12,13 +12,13 @@ type Props = {
 };
 
 export default function CatalogSection({ title, category, imageUrl }: Props) {
-  const { isPending, isError, data, error } = useQuery({
+  const { isLoading, isError, data, error } = useQuery({
     queryKey: [`${category}-products`],
     queryFn: () => getSingleCategory(category),
   });
 
   if (isError) return <ErrorPage error={error} />;
-  if (isPending) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <section className="section Catalog-section">
