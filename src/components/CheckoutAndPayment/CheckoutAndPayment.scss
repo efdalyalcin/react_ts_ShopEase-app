@@ -1,1 +1,46 @@
 @import 'src/styles/_utils.scss';
+
+.CheckoutAndPayment {
+  @extend %borderShadow;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-height: 300px;
+  padding: $cardPadding $cardPaddingS;
+
+  &__price-info {
+    display: flex;
+    flex-direction: column;
+    gap: $cardGap;
+
+    padding-bottom: $cardPaddingS;
+    border-bottom: 1px solid $c-gray400;
+  }
+
+  &__pricing,
+  &__total-price {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__total-price {
+    padding-block: $cardPadding;
+
+    font-size: $fontLarge;
+    font-weight: 700;
+  }
+
+  &__button {
+    width: 100%;
+    padding: $buttonPaddingS $buttonPaddingR;
+
+    border-radius: $buttonBorderRadius;
+    background-color: $c-green;
+
+    text-align: center;
+    color: $c-white;
+    font-size: $fontRegular;
+  }
+}

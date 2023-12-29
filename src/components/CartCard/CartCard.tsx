@@ -7,6 +7,7 @@ import useCart from 'src/store/cartStore';
 import { getProductById } from 'src/services/getProductById';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import Loading from '../Loading/Loading';
+import { CURRENCY } from 'src/constants/pricing';
 
 type Props = {
   cartItem: ICartItem;
@@ -47,7 +48,7 @@ export default function CartCard({ cartItem }: Props) {
         <p className="CartCard__description">{data.description}</p>
       </div>
       <div className="CartCard__price-info">
-        <p className="CartCard__price">{`€ ${digittedPricing}`}</p>
+        <p className="CartCard__price">{`${CURRENCY} ${digittedPricing}`}</p>
         <div className="CartCard__quantity">
           <p>Qty: </p>
           <select
