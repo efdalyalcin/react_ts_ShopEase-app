@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  max-height: 300px;
+  height: 300px;
   padding: $cardPadding $cardPaddingS;
 
   &__price-info {
@@ -42,5 +42,22 @@
     text-align: center;
     color: $c-white;
     font-size: $fontRegular;
+  }
+
+  &__logo-container {
+    display: flex;
+    justify-content: space-between;
+    gap: $cardGap;
+  }
+
+  &__logo {
+    width: 34px;
+    height: 22px;
+
+    border: 1px solid $c-gray400;
+    border-radius: 4px;
+
+    object-fit: scale-down;
+    object-position: center;
   }
 }

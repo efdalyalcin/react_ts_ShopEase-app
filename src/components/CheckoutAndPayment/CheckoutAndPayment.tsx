@@ -5,10 +5,20 @@ import { useEffect, useState } from 'react';
 import { CURRENCY, TAX_PERCENT } from 'src/constants/pricing';
 import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
 
+// logos
+import AmexLogo from 'src/assets/images/Amex_Logo.png';
+import MasterCardLogo from 'src/assets/images/Mastercard_Logo.png';
+import PaypalLogo from 'src/assets/images/Paypal_Logo.png';
+import VisaLogo from 'src/assets/images/Visa_Logo.png';
+import ApplePayLogo from 'src/assets/images/ApplePay_Logo.png';
+import { createPortal } from 'react-dom';
+import CheckoutModal from '../CheckoutModal/CheckoutModal';
+
 export default function CheckoutAndPayment() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [subTotal, setSubTotal] = useState('0.00');
   const [tax, setTax] = useState('0.00');
+  const [isModalShown, setIsModalShown] = useState(true);
 
   const { productsInCart } = useCart();
   const { data } = useProductsData();
@@ -54,6 +64,34 @@ export default function CheckoutAndPayment() {
         <button type="button" className="CheckoutAndPayment__button">
           CHECKOUT
         </button>
+        {isModalShown
+          ? createPortal(
+              <CheckoutModal
+              // onPostpone={postponeWarning}
+              // closeModalWithAction={closeModalWithAction}
+              />,
+              document.getElementById('modal')!
+            )
+          : null}
+      </div>
+      <div className="CheckoutAndPayment__logo-container">
+        <img src={AmexLogo} alt="Amex" className="CheckoutAndPayment__logo" />
+        <img
+          src={MasterCardLogo}
+          alt="Mastercard"
+          className="CheckoutAndPayment__logo"
+        />
+        <img
+          src={PaypalLogo}
+          alt="Paypal"
+          className="CheckoutAndPayment__logo"
+        />
+        <img src={VisaLogo} alt="Visa" className="CheckoutAndPayment__logo" />
+        <img
+          src={ApplePayLogo}
+          alt="Apple Pay"
+          className="CheckoutAndPayment__logo"
+        />
       </div>
     </div>
   );
