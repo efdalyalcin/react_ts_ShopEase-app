@@ -6,6 +6,11 @@ import { useQuery } from 'react-query';
 import HorizontalDraggableButtons from '../HorizontalDraggableButtons/HorizontalDraggableButtons';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 import useSearchQuery from 'src/store/searchQueryStore';
+import throttle from 'src/helpers/throttle';
+import {
+  initialCategoryKey,
+  initialCategoryValue,
+} from 'src/constants/categories';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQuery();
@@ -26,10 +31,11 @@ export default function SearchBar() {
       setWindowWidth(window.innerWidth);
     };
 
-    window.addEventListener('resize', handleWidthResize);
+    const throttledHandler = throttle(handleWidthResize, 300);
+    window.addEventListener('resize', throttledHandler);
 
     return () => {
-      window.removeEventListener('resize', handleWidthResize);
+      window.removeEventListener('resize', throttledHandler);
     };
   }, []);
   // #endregion
@@ -91,7 +97,7 @@ export default function SearchBar() {
             className="SearchBar__select"
             defaultValue={selectedCategory}
           >
-            <option key={'allCategories'} value={'all categories'}>
+            <option key={initialCategoryKey} value={initialCategoryValue}>
               ALL CATEGORIES
             </option>
             {data?.map((category, i) => {
@@ -105,7 +111,7 @@ export default function SearchBar() {
         ) : (
           <HorizontalDraggableButtons
             data={data}
-            additionalFirstButton="all categories"
+            additionalFirstButton={initialCategoryValue}
             additionalLastButton=""
             gridArea="2 / 1 / 2 / -1"
             handleClick={handleCategoriesByButtons}
