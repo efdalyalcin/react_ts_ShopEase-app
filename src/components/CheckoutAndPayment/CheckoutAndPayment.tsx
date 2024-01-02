@@ -4,6 +4,8 @@ import useCart from 'src/store/cartStore';
 import { useCallback, useEffect, useState } from 'react';
 import { CURRENCY, TAX_PERCENT } from 'src/constants/pricing';
 import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
+import { createPortal } from 'react-dom';
+import CheckoutModal from '../CheckoutModal/CheckoutModal';
 
 // logos
 import AmexLogo from 'src/assets/images/Amex_Logo.png';
@@ -11,8 +13,6 @@ import MasterCardLogo from 'src/assets/images/Mastercard_Logo.png';
 import PaypalLogo from 'src/assets/images/Paypal_Logo.png';
 import VisaLogo from 'src/assets/images/Visa_Logo.png';
 import ApplePayLogo from 'src/assets/images/ApplePay_Logo.png';
-import { createPortal } from 'react-dom';
-import CheckoutModal from '../CheckoutModal/CheckoutModal';
 
 export default function CheckoutAndPayment() {
   const [totalPrice, setTotalPrice] = useState(0);
