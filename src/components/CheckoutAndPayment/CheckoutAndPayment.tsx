@@ -1,7 +1,7 @@
 import { useProductsData } from 'src/hooks/useProductsData';
 import './CheckoutAndPayment.scss';
 import useCart from 'src/store/cartStore';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CURRENCY, TAX_PERCENT } from 'src/constants/pricing';
 import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
 
@@ -18,7 +18,7 @@ export default function CheckoutAndPayment() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [subTotal, setSubTotal] = useState('0.00');
   const [tax, setTax] = useState('0.00');
-  const [isModalShown, setIsModalShown] = useState(true);
+  const [isModalShown, setIsModalShown] = useState(false);
 
   const { productsInCart } = useCart();
   const { data } = useProductsData();
@@ -44,6 +44,14 @@ export default function CheckoutAndPayment() {
     setTax(twoDigitTotalTax);
   }, [productsInCart, data]);
 
+  const handleCheckout = () => {
+    setIsModalShown(true);
+  };
+
+  const closeModal = useCallback(() => {
+    setIsModalShown(false);
+  }, []);
+
   return (
     <div className="CheckoutAndPayment">
       <div className="CheckoutAndPayment__price-info">
@@ -61,18 +69,27 @@ export default function CheckoutAndPayment() {
         <p>{`${CURRENCY} ${totalPrice}`}</p>
       </div>
       <div>
-        <button type="button" className="CheckoutAndPayment__button">
+        <button
+          type="button"
+          className="CheckoutAndPayment__button"
+          onClick={handleCheckout}
+        >
           CHECKOUT
         </button>
-        {isModalShown
-          ? createPortal(
-              <CheckoutModal
-              // onPostpone={postponeWarning}
-              // closeModalWithAction={closeModalWithAction}
-              />,
-              document.getElementById('modal')!
-            )
-          : null}
+
+        {
+          //#region modal
+          isModalShown
+            ? createPortal(
+                <CheckoutModal
+                  // onPostpone={postponeWarning}
+                  closeModal={closeModal}
+                />,
+                document!.getElementById('modal')!
+              )
+            : null
+          //#endregion
+        }
       </div>
       <div className="CheckoutAndPayment__logo-container">
         <img src={AmexLogo} alt="Amex" className="CheckoutAndPayment__logo" />

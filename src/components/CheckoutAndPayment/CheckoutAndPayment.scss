@@ -10,6 +10,10 @@
   height: 300px;
   padding: $cardPadding $cardPaddingS;
 
+  @include mediaMaxWidth {
+    justify-self: center;
+  }
+
   &__price-info {
     display: flex;
     flex-direction: column;
