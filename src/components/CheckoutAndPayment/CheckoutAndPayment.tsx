@@ -85,6 +85,7 @@ export default function CheckoutAndPayment() {
                   // onPostpone={postponeWarning}
                   closeModal={closeModal}
                 />,
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 document!.getElementById('modal')!
               )
             : null
