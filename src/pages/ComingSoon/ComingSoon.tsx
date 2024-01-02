@@ -9,7 +9,7 @@ export default function ComingSoon() {
   }, []);
 
   return (
-    <main className="loading">
+    <main className="Loading">
       <Link
         to="/"
         // I will be developing this part later, so inline styling is okay for now.
@@ -21,7 +21,7 @@ export default function ComingSoon() {
       >
         <OpenCloseButton state={isOpen} action={closeButton} />
       </Link>
-      <h1 className="loading__text">
+      <h1 className="Loading__text">
         This page is in development! <br />
         Thank you for your understanding...
       </h1>

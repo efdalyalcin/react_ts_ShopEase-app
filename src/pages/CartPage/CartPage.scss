@@ -1,0 +1,22 @@
+@import 'src/styles/_utils.scss';
+
+.CartPage {
+  &__section {
+    @extend %componentPadding;
+
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: $gapBetweenCards;
+
+    @include mediaMaxWidth {
+      grid-template-columns: 1fr;
+      grid-template-rows: 2;
+    }
+  }
+
+  &__products {
+    display: flex;
+    flex-direction: column;
+    gap: $gapBetweenCards;
+  }
+}

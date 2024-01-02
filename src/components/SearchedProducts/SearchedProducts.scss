@@ -3,7 +3,7 @@
 .SearchedProducts {
   display: flex;
   flex-direction: column;
-  gap: $searchPageCardGap;
+  gap: $gapBetweenCards;
 
   padding: 16px $pageSidePaddingL;
 

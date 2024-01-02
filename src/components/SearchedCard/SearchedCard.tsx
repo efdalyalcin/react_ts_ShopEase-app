@@ -6,16 +6,11 @@ import findProductInCart from 'src/helpers/findProductInCart';
 import useItemAmount from 'src/hooks/useItemAmount';
 import useCart from 'src/store/cartStore';
 import AddToCartButton from '../AddToCartButton/AddToCartButton';
+import { makeTwoDigitPricing } from 'src/helpers/makeTwoDigitPricing';
+import { CURRENCY } from 'src/constants/pricing';
 
 type Props = {
   product: IProduct;
-};
-
-const makeTwoDigitPricing = (price: string | number): string => {
-  const priceStr = typeof price === 'number' ? price.toFixed(2) : String(price);
-
-  if (priceStr.includes('.')) return priceStr;
-  return `${priceStr}.00`;
 };
 
 export default function SearchedCard({ product }: Props) {
@@ -51,7 +46,7 @@ export default function SearchedCard({ product }: Props) {
       </div>
       <div className="SearchedCard__details">
         <h4 className="SearchedCard__title">{product.title}</h4>
-        <p className="SearchedCard__price">{`€ ${digitedPricing}`}</p>
+        <p className="SearchedCard__price">{`${CURRENCY} ${digitedPricing}`}</p>
         <p className="SearchedCard__desc">{product.description}</p>
         <AddToCartButton
           amount={amount}

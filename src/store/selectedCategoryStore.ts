@@ -1,3 +1,4 @@
+import { initialCategoryKey } from 'src/constants/categories';
 import { create } from 'zustand';
 
 interface ISelectedCategoryStore {
@@ -7,14 +8,14 @@ interface ISelectedCategoryStore {
 }
 
 const useSelectedCategory = create<ISelectedCategoryStore>()((set) => ({
-  selectedCategory: 'all categories',
+  selectedCategory: initialCategoryKey,
   setSelectedCategory: (category) => {
     set(() => ({
       selectedCategory: category,
     }));
   },
   clearSelectedCategory: () => {
-    set(() => ({ selectedCategory: 'all categories' }));
+    set(() => ({ selectedCategory: initialCategoryKey }));
   },
 }));
 
