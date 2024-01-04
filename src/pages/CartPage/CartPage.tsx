@@ -3,6 +3,7 @@ import './CartPage.scss';
 import Header from 'src/components/Header/Header';
 import useCart from 'src/store/cartStore';
 import CheckoutAndPayment from 'src/components/CheckoutAndPayment/CheckoutAndPayment';
+import Footer from 'src/components/Footer/Footer';
 
 export default function CartPage() {
   const { productsInCart } = useCart();
@@ -24,6 +25,7 @@ export default function CartPage() {
           <CheckoutAndPayment />
         </section>
       )}
+      <Footer />
     </main>
   );
 }

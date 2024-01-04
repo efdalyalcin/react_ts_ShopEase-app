@@ -2,6 +2,7 @@ import Header from 'src/components/Header/Header';
 import RecommendedSection from 'src/components/RecommendedSection/RecommendedSection';
 import './Home.scss';
 import CatalogSection from 'src/components/CatalogSection/CatalogSection';
+import Footer from 'src/components/Footer/Footer';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         imageUrl="src/assets/images/mensClothingCategory.png"
       />
       <RecommendedSection />
+      <Footer />
     </main>
   );
 }
