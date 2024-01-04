@@ -10,7 +10,7 @@ type Props = {
 const ProductImage = ({ img, alt, height, width }: Props) => {
   return (
     <img
-      className="image"
+      className="ProductImage"
       src={img}
       alt={alt}
       style={{ height: height, width: width }}

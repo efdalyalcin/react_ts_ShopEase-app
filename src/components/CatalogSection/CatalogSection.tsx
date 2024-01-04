@@ -1,7 +1,9 @@
-import { useQuery } from 'react-query';
-import CatalogCard from '../CatalogCard/CatalogCard';
-import './Catalog.scss';
+import { useQuery } from '@tanstack/react-query';
+import CatalogCard from 'src/components/CatalogCard/CatalogCard';
+import './CatalogSection.scss';
 import { getSingleCategory } from 'src/services/getSingleCategory';
+import Loading from 'src/components/Loading/Loading';
+import ErrorPage from 'src/components/ErrorPage/ErrorPage';
 
 type Props = {
   title: string;
@@ -9,33 +11,27 @@ type Props = {
   imageUrl: string;
 };
 
-export default function Catalog({ title, category, imageUrl }: Props) {
+export default function CatalogSection({ title, category, imageUrl }: Props) {
   const { isLoading, isError, data, error } = useQuery({
     queryKey: [`${category}-products`],
     queryFn: () => getSingleCategory(category),
   });
 
-  if (isError) return <div>{`Error on the server: ${error}`}</div>;
-  if (isLoading) {
-    return (
-      <div className="loading">
-        <h1 className="loading__text">Loading...</h1>
-      </div>
-    );
-  }
+  if (isError) return <ErrorPage error={error} />;
+  if (isLoading) return <Loading />;
 
   return (
-    <section className="section catalog-section">
-      <div className="catalog">
-        <div className="catalog__banner">
+    <section className="section Catalog-section">
+      <div className="Catalog">
+        <div className="Catalog__banner">
           <img
             src={imageUrl}
             alt={`${title} related image`}
-            className="catalog__banner-image"
+            className="Catalog__banner-image"
           />
-          <h3 className="catalog__banner-title">{title}</h3>
+          <h3 className="Catalog__banner-title">{title}</h3>
         </div>
-        <div className="catalog__cards">
+        <div className="Catalog__cards">
           {data?.map((product) => (
             <CatalogCard
               key={product.id}

@@ -1,0 +1,88 @@
+@import 'src/styles/_utils.scss';
+
+.CartCard {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  gap: 20px;
+  place-items: center;
+
+  padding: $cardPadding;
+
+  @extend %borderShadow;
+
+  @include mediaMaxWidth {
+    padding: $cardPaddingS;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $cardGap;
+  }
+
+  &__title {
+    font-weight: 700;
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      font-size: $fontSmall;
+    }
+  }
+
+  &__description {
+    display: block;
+
+    @include mediaMaxWidth($mobileWidth) {
+      display: none;
+    }
+  }
+
+  &__price-info {
+    display: flex;
+    flex-direction: column;
+    gap: $cardGap;
+    align-items: center;
+  }
+
+  &__price {
+    white-space: nowrap;
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      font-size: $fontSmall;
+    }
+  }
+
+  &__quantity {
+    display: flex;
+    gap: $cardGap;
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      font-size: $fontSmall;
+    }
+  }
+
+  &__select {
+    padding: 0 8px;
+    flex-grow: 1;
+
+    font-size: $fontRegular;
+    line-height: $lineHeight;
+
+    border: 1px solid $c-gray400;
+    border-radius: 4px;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $c-primary;
+    }
+
+    &::placeholder {
+      color: $c-gray400;
+    }
+
+    @include mediaMaxWidth($extraSmallWidth) {
+      max-width: 160px;
+      font-size: $fontSmall;
+      line-height: 20px;
+    }
+  }
+}

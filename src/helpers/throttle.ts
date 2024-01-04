@@ -1,3 +1,6 @@
+// this function is used to call a function only once in delayed time
+// example: it limits the API calls in every keyboard stroke
+
 export default function throttle<T extends (...args: any[]) => void>(
   callback: T,
   delay = 300
