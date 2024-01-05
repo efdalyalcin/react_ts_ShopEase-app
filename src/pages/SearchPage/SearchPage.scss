@@ -1,7 +1,5 @@
 @import 'src/styles/_utils.scss';
 
-.Home {
+.SearchPage {
   @extend %pageFlexLayout;
-  @extend %minMaxWidthPage;
-  @extend %center;
 }

@@ -1,0 +1,62 @@
+@import 'src/styles/_utils.scss';
+
+.Footer {
+  margin-top: auto;
+  color: $c-gray500;
+
+  &__bold {
+    font-weight: 600;
+    color: $c-dark;
+  }
+
+  &__buffer {
+    height: 40px;
+    background-color: $c-gray200;
+  }
+
+  &__info {
+    @extend %componentPadding;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: $gapBetweenCards;
+
+    @include mediaMaxWidth($mobileWidth) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 3;
+    }
+  }
+
+  &__info-brand {
+    display: flex;
+    flex-direction: column;
+
+    gap: $cardGap;
+  }
+
+  &__logo {
+    display: block;
+    width: 60px;
+    height: 60px;
+  }
+
+  &__info-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: $cardGap;
+  }
+
+  &__copyright {
+    @extend %componentPadding;
+
+    padding-block: 12px;
+
+    background-color: $c-gray200;
+
+    font-size: $fontSmall;
+    line-height: 1.25;
+
+    color: $c-gray800;
+  }
+}

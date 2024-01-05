@@ -3,6 +3,7 @@
 .App {
   @extend %minMaxWidthPage;
   @extend %center;
+  height: 100vh;
 }
 
 h2 {

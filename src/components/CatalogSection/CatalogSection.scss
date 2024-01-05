@@ -1,17 +1,7 @@
 @import 'src/styles/_utils.scss';
 
 .Catalog-section {
-  padding: $componentInnerPaddingS $pageSidePaddingL;
-
-  @include mediaMaxWidth {
-    padding-right: $pageSidePaddingM;
-    padding-left: $pageSidePaddingM;
-  }
-
-  @include mediaMaxWidth($mobileWidth) {
-    padding-right: $pageSidePaddingS;
-    padding-left: $pageSidePaddingS;
-  }
+  @extend %componentPadding;
 }
 
 $catalogImageCrop: polygon(
