@@ -1,6 +1,7 @@
 @import 'src/styles/_utils.scss';
 
 .CartPage {
+  @extend %pageFlexLayout;
   &__section {
     @extend %componentPadding;
 

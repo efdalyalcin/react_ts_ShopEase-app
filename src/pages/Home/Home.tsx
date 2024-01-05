@@ -6,7 +6,7 @@ import Footer from 'src/components/Footer/Footer';
 
 export default function Home() {
   return (
-    <main className="home-page">
+    <main className="Home">
       <Header />
       <CatalogSection
         title="Consumer Electronics and Gadgets"

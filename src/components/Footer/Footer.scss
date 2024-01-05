@@ -1,1 +1,44 @@
 @import 'src/styles/_utils.scss';
+
+.Footer {
+  margin-top: auto;
+  color: $c-gray500;
+
+  &__buffer {
+    height: 48px;
+    background-color: $c-gray200;
+  }
+
+  &__info {
+    @extend %componentPadding;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  &__info-brand {
+    display: flex;
+    flex-direction: column;
+
+    gap: $cardGap;
+  }
+
+  &__logo {
+    display: block;
+    width: 60px;
+    height: 60px;
+  }
+
+  &__copyright {
+    @extend %componentPadding;
+
+    padding-block: 12px;
+
+    background-color: $c-gray200;
+
+    font-size: $fontLarge;
+    line-height: 1.2;
+
+    color: $c-gray800;
+  }
+}
