@@ -4,8 +4,13 @@
   margin-top: auto;
   color: $c-gray500;
 
+  &__bold {
+    font-weight: 600;
+    color: $c-dark;
+  }
+
   &__buffer {
-    height: 48px;
+    height: 40px;
     background-color: $c-gray200;
   }
 
@@ -14,6 +19,12 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: $gapBetweenCards;
+
+    @include mediaMaxWidth($mobileWidth) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 3;
+    }
   }
 
   &__info-brand {
@@ -29,6 +40,13 @@
     height: 60px;
   }
 
+  &__info-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: $cardGap;
+  }
+
   &__copyright {
     @extend %componentPadding;
 
@@ -36,8 +54,8 @@
 
     background-color: $c-gray200;
 
-    font-size: $fontLarge;
-    line-height: 1.2;
+    font-size: $fontSmall;
+    line-height: 1.25;
 
     color: $c-gray800;
   }
