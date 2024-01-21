@@ -5,6 +5,10 @@ import { useEffect } from 'react';
 import useSearchQuery from 'src/store/searchQueryStore';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 import useCart from 'src/store/cartStore';
+import accountIcon from '/src/assets/icons/account_circle.svg';
+import favoriteIcon from '/src/assets/icons/favorite.svg';
+import fullCartIcon from '/src/assets/icons/shopping_cart_full.svg';
+import emptyCartIcon from '/src/assets/icons/shopping_cart.svg';
 
 export default function Header() {
   const { searchQuery, clearSearchQuery } = useSearchQuery();
@@ -41,18 +45,18 @@ export default function Header() {
       </div>
       <div className="nav-controls">
         <Link to="/coming-soon" className="nav-controls__item">
-          <img src="/src/assets/icons/account_circle.svg" alt="Account" />
+          <img src={accountIcon} alt="Account" />
           <p className="nav-controls__title">Profile</p>
         </Link>
         <Link to="/coming-soon" className="nav-controls__item">
-          <img src="/src/assets/icons/favorite.svg" alt="Orders" />
+          <img src={favoriteIcon} alt="Orders" />
           <p className="nav-controls__title">Orders</p>
         </Link>
         <Link to="/cart" className="nav-controls__item">
           {productsInCart.length ? (
-            <img src="/src/assets/icons/shopping_cart_full.svg" alt="Cart" />
+            <img src={fullCartIcon} alt="Cart" />
           ) : (
-            <img src="/src/assets/icons/shopping_cart.svg" alt="Cart" />
+            <img src={emptyCartIcon} alt="Cart" />
           )}
 
           <p className="nav-controls__title">My&nbsp;Cart</p>

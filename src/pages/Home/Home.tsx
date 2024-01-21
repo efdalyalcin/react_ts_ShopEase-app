@@ -3,6 +3,8 @@ import RecommendedSection from 'src/components/RecommendedSection/RecommendedSec
 import './Home.scss';
 import CatalogSection from 'src/components/CatalogSection/CatalogSection';
 import Footer from 'src/components/Footer/Footer';
+import mansClothingImg from 'src/assets/images/mensClothingCategory.png';
+import electronicsImg from 'src/assets/images/electronics.png';
 
 export default function Home() {
   return (
@@ -11,12 +13,12 @@ export default function Home() {
       <CatalogSection
         title="Consumer Electronics and Gadgets"
         category="electronics"
-        imageUrl="src/assets/images/electronics.png"
+        imageUrl={electronicsImg}
       />
       <CatalogSection
         title="Men's Clothing"
         category="men's clothing"
-        imageUrl="src/assets/images/mensClothingCategory.png"
+        imageUrl={mansClothingImg}
       />
       <RecommendedSection />
       <Footer />
