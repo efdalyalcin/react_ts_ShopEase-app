@@ -3,7 +3,7 @@ import './CatalogCard.scss';
 import { Link } from 'react-router-dom';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 
-const makeTwoWordsTitle = (title: string): string => {
+export const makeTwoWordsTitle = (title: string): string => {
   const wordsArr = title.split(' ');
   if (wordsArr.length === 1) return wordsArr[0];
   if (wordsArr[1].length < 3)

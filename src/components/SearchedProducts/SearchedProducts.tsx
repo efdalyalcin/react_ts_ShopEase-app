@@ -24,6 +24,8 @@ export default function SearchedProducts() {
   >(data);
 
   useEffect(() => {
+    // try this one
+    // const paramQuery = new URLSearchParams(searchParams.get('query'));
     const paramQuery = searchParams.get('query');
 
     if (paramQuery && data) {
