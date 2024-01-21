@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/react_ts_ShopEase-app">
         <App />
       </BrowserRouter>
     </QueryClientProvider>
