@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://efdalyalcin.github.io/react_ts_ShopEase-app",
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",

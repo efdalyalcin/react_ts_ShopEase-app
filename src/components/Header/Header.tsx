@@ -5,10 +5,10 @@ import { useEffect } from 'react';
 import useSearchQuery from 'src/store/searchQueryStore';
 import useSelectedCategory from 'src/store/selectedCategoryStore';
 import useCart from 'src/store/cartStore';
-import accountIcon from '/src/assets/icons/account_circle.svg';
-import favoriteIcon from '/src/assets/icons/favorite.svg';
-import fullCartIcon from '/src/assets/icons/shopping_cart_full.svg';
-import emptyCartIcon from '/src/assets/icons/shopping_cart.svg';
+import accountIcon from 'src/assets/icons/account_circle.svg';
+import favoriteIcon from 'src/assets/icons/favorite.svg';
+import fullCartIcon from 'src/assets/icons/shopping_cart_full.svg';
+import emptyCartIcon from 'src/assets/icons/shopping_cart.svg';
 
 export default function Header() {
   const { searchQuery, clearSearchQuery } = useSearchQuery();
